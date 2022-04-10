@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>ログイン</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+</head>
+<body>
+<div class="container">
+    <h2 class="heading" style="text-align: center;">ログイン</h2>
+    <form class="form-signin" method="post" th:action="@{/login}">
+        <div class="text-danger" style="text-align:center;" th:if="${param.error}">
+            ログインに失敗しました
+            <div th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null}">
+                <span th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}"></span>
+            </div>
+        </div>
+        <div class="text-danger" style="text-align:center;"th:if="${param.logout}">
+            ログアウトしました
+        </div>
+        <!-- <label for="username">ユーザー名</label> -->
+        <input type="text" id="username" name="username" class="form-control" placeholder="ユーザー名" required autofocus ><br>
+        <!-- <label for="password">パスワード</label> -->
+        <input type="password" id="password" name="password" class="form-control" placeholder="パスワード" required ><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+    </form>
+</div>
+</body>
+</html>
+
