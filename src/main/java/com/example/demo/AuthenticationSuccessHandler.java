@@ -20,10 +20,12 @@ public class AuthenticationSuccessHandler
 			Authentication authentication) throws IOException, ServletException {
 		Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
+		// ロールがROLE_ADMINの場合、管理者専用画面に遷移
         if (roles.contains("ROLE_ADMIN")) {
         	response.sendRedirect(request.getContextPath() + "/admin");
+        // ロールがROLE_USERの場合、アルバイト専用画面に遷移
         }else if(roles.contains("ROLE_USER")){
-        	response.sendRedirect(request.getContextPath() + "/user");
+        	response.sendRedirect(request.getContextPath() + "/part");
         }
 	}
 

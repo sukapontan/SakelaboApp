@@ -4,13 +4,13 @@
 	<meta charset="UTF-8">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 	<!-- Custom styles for this template -->
-	<link href="sticky-footer.css" rel="stylesheet">
 	<title>SakelaboTokyo Top</title>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>	
 </head>
 <body>
+<!-- ヘッダー ※共通化予定 -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">SakelaboTokyo</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,16 +39,22 @@
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <a class="nav-link text-white" href="#" th:text=${#authentication.name}></a>
+    <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-danger btn-sm" >ログアウト</button>
+    </form><br>
+    <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form> -->
   </div>
 </nav>
+
   	<h1 class="mt-2" th:text="'こんにちは ' + ${#authentication.name}  + ' さん'" style="text-align:center;"></h1>
+  	<h2 style="text-align:center;">社員のホーム画面</h2>
 <div class="container">
 	<div class="bg-light p-3 p-sm-5 my-4 rounded">
-		<h1 class="display-4">サケラボトーキョーのモットー</h1>
+		<h2 class="display-4">サケラボトーキョーのモットー</h2>
 		<p class="lead">お客様にいろいろな種類の日本酒を味わっていただき、好みの日本酒を見つけていただく。</p>
     	<hr class="my-4">
     	<h2>＜従業員の心得＞</h2>
@@ -57,7 +63,7 @@
     		<li>笑顔でいる</li>
     		<li>お客様を感動させる</li>
     	</ul>
-    	<!-- <a class="btn btn-primary btn-lg" href="#" role="button">もっと知りたい！</a><br> -->
+    	<!-- <a class="btn btn-primary btn-lg" href="#" role="button">もっと知りたい！</a><br> 
     	
     	<div class="d-grid gap-2 d-md-block">
     		<button class="btn btn-primary" type="button">十四代</button>
@@ -65,32 +71,70 @@
   			<button class="btn btn-info" type="button">仙禽</button>
 			<button class="btn btn-success" type="button">天美</button>
 			<button class="btn btn-warning" type="button">Button</button>
-		</div>
+		</div> -->
   	</div>
 </div>
 
+<h1 style="text-align:center;">各種メニュー編集</h2><br>
+<!-- メニュー・マニュアルなど -->
 <div class="container">
- 			<div class="row">
-		    	<div class="col-sm">
-		    		<h2>料理メニュー</h2>
-		    		<p>4品・6品・8品のコースメニューを確認</p>
-      				<button class="btn btn-primary" type="button">詳しくはこちら</button>
-    			</div>
-    			<div class="col-sm">
-    			<h2>日本酒メニュー</h2>
-    				<p>本日の日本酒一覧を確認</p>
-      				<button class="btn btn-secondary" type="button">詳しくはこちら</button>
-    			</div>
-    			<div class="col-sm">
-    				<h2>各種マニュアル</h2>
-    				<p>接客時の注意点、電話対応、お会計時のマニュアルなどを確認</p>
-    				<p>基本的な接客時のマニュアルを確認</p>
-      				<button class="btn btn-info" type="button">詳しくはこちら</button>
-    			</div>
-  			</div>
-		</div>
+ 	<div class="row">
+	  	<div class="d-flex align-items-start flex-column col-sm bg-light">
+	   		<h2>料理メニュー</h2>
+	   		<hr class="my-4">
+	   		<p>4品・6品・8品のコースメニューを確認</p>
+    		<button class="btn btn-primary mt-auto ml-auto" type="button">詳しくはこちら</button>
+    	</div>
+    	<div class="d-flex align-items-start flex-column col-sm bg-light">
+    		<h2>日本酒メニュー</h2>
+    		<hr class="my-4">
+    		<p>本日の日本酒一覧を確認</p>
+      		<button class="btn btn-secondary mt-auto ml-auto" type="button">詳しくはこちら</button>
+    	</div>
+    	<div class="d-flex align-items-start flex-column col-sm bg-light">
+    		<h2>各種マニュアル</h2>
+    		<hr class="my-4">
+    		<p>接客時の注意点、電話対応、お会計時のマニュアルなどを確認</p>
+    		<p>基本的な接客時のマニュアルを確認</p>
+      		<button class="btn btn-info mt-auto ml-auto" type="button" >詳しくはこちら</button>
+    	</div>
+  	</div>
+</div>
 
+<br><br>
+
+<h1 style="text-align:center;">ユーザー情報編集</h2><br>
+<!-- 権限、ユーザー登録・編集など -->
 <div class="container">
+ 	<div class="row">
+ 		<div class="d-flex align-items-start flex-column col-sm bg-light">
+    		<h2>新規ユーザー登録</h2>
+    		<hr class="my-4">
+    		<p>従業員やアルバイトの新規登録</p>
+    		<div class="signup mt-auto ml-auto">
+    			<a href="/signup" class="btn btn-success">新規ユーザー登録</a>
+    		</div>
+    	</div>
+	   	<div class="d-flex align-items-start flex-column col-sm bg-light">
+	   		<h2>ユーザー情報編集</h2>
+	   		<hr class="my-4">
+    		<p>従業員やアルバイトの情報を編集</p>
+    		<div class="mt-auto ml-auto">
+    			<a href="user/list" class="btn btn-primary">ユーザー情報編集</a>
+    		</div>
+    	</div>
+    	<div class="d-flex align-items-start flex-column col-sm bg-light">
+    		<h2>ユーザー権限編集</h2>
+    		<hr class="my-4">
+    		<p>従業員やアルバイトの権限を編集</p>
+      		<div class="authority mt-auto ml-auto">
+    			<a href="/admin/authority" class="btn btn-primary">権限編集</a>
+    		</div>
+    	</div>
+  	</div>
+</div>
+
+<!--<div class="container">
 
 	<div class="header">
     	<h2 style="text-align:center;">Top Page</h2>
@@ -115,20 +159,18 @@
     		</tr>
   		</tbody>
 	</table>
-    
+     
     <form th:action="@{/logout}" method="post">
         <button type="submit" class="btn btn-danger btn-lg" >ログアウト</button>
     </form><br>
     <div class="signup">
     	<a href="/signup" class="btn btn-success btn-lg">新規ユーザー登録</a>
-    </div>
-</div>
-<footer class="footer">
-    <div class="container">
-    	<p class="text-muted">Place sticky footer content here.</p>
-	</div>
-</footer>
+    </div><br>
+    <div class="authority">
+    	<a href="/admin/authority" class="btn btn-primary btn-lg">権限編集</a>
+    </div> 
+
+</div>-->
 
 </body>
-
 </html>	

@@ -13,7 +13,7 @@
     <h2 class="heading" style="text-align: center;">ユーザー登録</h2>
     <form class="form-signin" method="post" th:action="@{/signup}" th:object="${signupForm}">
         <div th:if="${signupError}">
-            <div th:text="${signupError}"></div>
+            <div class="text-danger" th:text="${signupError}"></div>
         </div>
         <div class="form-group">
         	<!-- <label for="username">ユーザー名</label> -->
@@ -26,9 +26,9 @@
     	    <input type="password" id="password" name="password" class="form-control" th:value="${signupForm.password}" placeholder="パスワード"><br>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登録</button>
-    </form>
-    <div class="center-block">
-    	<a class="btn btn-lg btn-success" href="/login" role="button">ログイン画面</a>
+    </form><br>
+    <div class="center-block" style="text-align: center;">
+    	<a class="btn btn-lg btn-success" href="/admin" role="button">ホーム画面へ戻る</a>
     </div>
 </div>
 </body>

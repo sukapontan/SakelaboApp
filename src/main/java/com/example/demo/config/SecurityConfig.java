@@ -21,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Lazy  // エラーが出るのでLazyを使用したが非推奨？
     private UserDetailsService userDetailsService;
 	
+	// 認証成功時の処理をカスタマイズ
 	@Autowired
 	private AuthenticationSuccessHandler AuthenticationSuccessHandler;
 
@@ -29,10 +30,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
     
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css/**");
-    }
+    // コンソールのログに警告が出るので一旦コメントアウト
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers("/css/**");
+//    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -42,13 +44,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()  // 認可の設定
-        	.antMatchers("/login","/signup", "/error", "/login-error").permitAll()
+        	.antMatchers("/login", "/error", "/login-error").permitAll()
+        	.antMatchers("/admin", "/admin/**").hasAuthority("ROLE_ADMIN") 
             .anyRequest()
             .authenticated();  // それ以外は全て認証無しの場合アクセス不許可
-        http.formLogin()
+        http.formLogin() // ログイン時の設定
         	.loginPage("/login")
         	.successHandler(AuthenticationSuccessHandler)
         	//.defaultSuccessUrl("/")
+        	/*
+        	//管理者ユーザー向けのアクセスパスは、管理者権限をもつユーザーのみアクセス可能にする
+            //それ以外はログインした全てのユーザーがアクセス可能にする
+            .and()
+        	.authorizeRequests().mvcMatchers("/admin").hasAuthority("ADMIN")
+            .anyRequest().authenticated();*/
             .permitAll();
         http.logout()  // ログアウト設定
             .permitAll();

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<!-- Custom styles for this template -->
+	<title>ユーザー権限編集画面</title>
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+	<script>
+	function alert(){
+		let result = confirm('削除しますか？');
+		if(result){
+	  		console.log('削除しました');
+	  		return result
+		}else{
+	  		console.log('削除をとりやめました');
+	  		return result
+		}
+	}
+	</script>	
+</head>
+<body>
+	<div class="container">
+    <h1>ユーザー情報一覧</h1>
+    <div class="float-end">
+      <a th:href="@{/signup}" class="btn btn-success">新規登録はこちら</a>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>名前</th>
+          <th>権限</th>
+          <th>編集</th>
+          <th>削除</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="user : ${userlist}" th:object="${user}" class="align-middle">
+          <td th:text="*{name}"></td>
+          <td th:text="*{authority}"></td>
+          <td><a th:href="@{/user/edit/{id}(id=*{id})}" class="btn btn-primary">編集</a></td>
+          <td><a th:href="@{/user/delete/{id}(id=*{id})}" class="btn btn-danger" onClick="return alert()">削除</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="authority">
+    	<a href="/admin" class="btn btn-primary btn-lg">ホーム画面に戻る</a>
+    </div>
+  </div>
+</body>
+</html>
