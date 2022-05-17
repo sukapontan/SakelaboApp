@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
-    <title>ユーザー登録完了画面</title>
+    <title>メニュー情報削除完了画面</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
-	<h1 style="text-align: center;">ユーザー登録完了</h1>
-	<h3 th:text="登録ユーザー名： + ${registerUser}" style="text-align: center;"></h3>
-	<div class="center-block" style="text-align: center;">
-		<a  class="btn btn-secondary" th:href="@{/user/list}">一覧に戻る</a>
-    	<a class="btn btn-success" href="/admin" role="button">ホーム画面へ戻る</a>
-    </div>
+	<h2 style="text-align: center;">メニュー情報を削除しました</h1>
+	<div class="text-center">
+		<a  class="btn btn-secondary" th:href="@{/menu/list}">一覧に戻る</a>
+		<a class="btn btn-success" href="/admin" role="button">ホーム画面へ戻る</a>
+	</div>
 </body>
 </html>

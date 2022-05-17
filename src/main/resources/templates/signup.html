@@ -11,10 +11,13 @@
 <body>
 <div class="container">
     <h2 class="heading" style="text-align: center;">ユーザー登録</h2>
+
+    <!-- エラーが発生した場合、エラーメッセージ出力 -->
+	<div th:if="${validationError}" th:each="error : ${validationError}">
+		<label class="text-danger" th:text="${error}"></label>
+	</div>
+        
     <form class="form-signin" method="post" th:action="@{/signup}" th:object="${signupForm}">
-        <div th:if="${signupError}">
-            <div class="text-danger" th:text="${signupError}"></div>
-        </div>
         <div class="form-group">
         	<!-- <label for="username">ユーザー名</label> -->
         	<div class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="${signupForm.username}"></div>
