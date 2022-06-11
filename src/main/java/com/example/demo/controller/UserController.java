@@ -3,16 +3,23 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.app.SignupForm;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.UserDetailServiceImpl;
 import com.example.demo.service.UserService;
 
 @Controller
@@ -26,6 +33,9 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+    private UserDetailServiceImpl userDetailsServiceImpl;
 
 	/**
 	 * ユーザー情報一覧画面を表示
@@ -39,6 +49,62 @@ public class UserController {
 		model.addAttribute("userlist", userlist);
 		return "user/list";
 	}
+	
+	/**
+	 * 新規ユーザー登録画面を表示
+	 * 
+	 * @return 新規ユーザー登録画面
+	 */
+	@GetMapping("/user/signup")
+    public String newSignup(SignupForm signupForm) {
+        return "user/signup";
+    }
+    
+    /**
+     * ユーザー登録フォーム画面から受け取った値から画面遷移を分岐する
+     * @return エラーだった場合、登録画面へのパス
+     * 			
+     */
+    @PostMapping("/user/signup")
+    public String signup(@Validated SignupForm signupForm, BindingResult result, Model model, HttpServletRequest request) {
+    	
+    	if (result.hasErrors()) {
+            return "user/signup";
+        }
+    	
+    	if (userDetailsServiceImpl.isExistUser(signupForm.getUsername())) {
+            model.addAttribute("signupError", "ユーザー名 " + signupForm.getUsername() + "は既に登録されています");
+            return "user/signup";
+        }
+    	
+        try {
+            userDetailsServiceImpl.register(signupForm.getUsername(), signupForm.getPassword(), "ROLE_USER");
+        } catch (DataAccessException e) {
+            model.addAttribute("signupError", "ユーザー登録に失敗しました");
+            return "user/signup";
+        }
+        
+        /*
+        // ユーザー登録後、一度ログアウト
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+
+        if (authentication instanceof AnonymousAuthenticationToken == false) {
+            SecurityContextHolder.clearContext();
+        }
+
+		// 再度ログイン
+        try {
+            request.login(signupForm.getUsername(), signupForm.getPassword());
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+        */
+        
+        model.addAttribute("registerUser", signupForm.getUsername());
+        return "user/signupSuccess";
+//        return "redirect:/";
+    }
 
 	/**
 	 * 新規ユーザー登録画面を表示

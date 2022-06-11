@@ -30,10 +30,10 @@ public class MenuController {
 	MenuService menuService;
 	
 	/**
-	 * ユーザー情報一覧画面を表示
+	 * メニュー情報一覧画面を表示
 	 * 
 	 * @param model Model
-	 * @return ユーザー情報一覧画面
+	 * @return メニュー情報一覧画面
 	 */
 	@GetMapping(value = "/menu/list")
 	public String menuList(Model model) {

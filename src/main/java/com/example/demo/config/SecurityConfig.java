@@ -51,13 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin() // ログイン時の設定
         	.loginPage("/login")
         	.successHandler(AuthenticationSuccessHandler)
-        	//.defaultSuccessUrl("/")
-        	/*
-        	//管理者ユーザー向けのアクセスパスは、管理者権限をもつユーザーのみアクセス可能にする
-            //それ以外はログインした全てのユーザーがアクセス可能にする
-            .and()
-        	.authorizeRequests().mvcMatchers("/admin").hasAuthority("ADMIN")
-            .anyRequest().authenticated();*/
             .permitAll();
         http.logout()  // ログアウト設定
             .permitAll();

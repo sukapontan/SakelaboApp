@@ -3,179 +3,123 @@
 <head>
 	<meta charset="UTF-8">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-	<!-- Custom styles for this template -->
 	<title>SakelaboTokyo Top</title>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>	
 </head>
-<body>
-<!-- ヘッダー ※共通化予定 -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">SakelaboTokyo</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">ホーム <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          メニュー
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">日本酒</a>
-          <a class="dropdown-item" href="#">料理</a>
-          <a class="dropdown-item" href="#">接客マニュアル</a>
-          <a class="dropdown-item" href="#">電話対応</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <a class="nav-link text-white" href="#" th:text=${#authentication.name}></a>
-    <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
-        <button type="submit" class="btn btn-danger btn-sm" >ログアウト</button>
-    </form><br>
-    <!-- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
-  </div>
-</nav>
-
-  	<h1 class="mt-2" th:text="'こんにちは ' + ${#authentication.name}  + ' さん'" style="text-align:center;"></h1>
-  	<h2 style="text-align:center;">社員のホーム画面</h2>
-<div class="container">
-	<div class="bg-light p-3 p-sm-5 my-4 rounded">
-		<h2 class="display-4">サケラボトーキョーのモットー</h2>
-		<p class="lead">お客様にいろいろな種類の日本酒を味わっていただき、好みの日本酒を見つけていただく。</p>
-    	<hr class="my-4">
-    	<h2>＜従業員の心得＞</h2>
-    	<ul>
-    		<li>集中する</li>
-    		<li>笑顔でいる</li>
-    		<li>お客様を感動させる</li>
-    	</ul>
-    	<!-- <a class="btn btn-primary btn-lg" href="#" role="button">もっと知りたい！</a><br> 
-    	
-    	<div class="d-grid gap-2 d-md-block">
-    		<button class="btn btn-primary" type="button">十四代</button>
-  			<button class="btn btn-secondary" type="button">新政</button>
-  			<button class="btn btn-info" type="button">仙禽</button>
-			<button class="btn btn-success" type="button">天美</button>
-			<button class="btn btn-warning" type="button">Button</button>
-		</div> -->
-  	</div>
-</div>
-
-<h1 style="text-align:center;">各種メニュー編集</h2><br>
-<!-- メニュー・マニュアルなど -->
-<div class="container">
- 	<div class="row">
-	  	<div class="d-flex align-items-start flex-column col-sm bg-light">
-	   		<h2>料理メニュー</h2>
-	   		<hr class="my-4">
-	   		<p>料理の単品メニューを確認</p>
-	   		<div class="mt-auto ml-auto">
-    			<a href="/menu/list" class="btn btn-primary">詳しくはこちら</a>
-    		</div>
-    	</div>
-    	<div class="d-flex align-items-start flex-column col-sm bg-light">
-    		<h2>日本酒メニュー</h2>
-    		<hr class="my-4">
-    		<p>本日の日本酒一覧を確認</p>
-      		<div class="mt-auto ml-auto">
-    			<a href="/sake/list" class="btn btn-primary">詳しくはこちら</a>
-    		</div>
-    	</div>
-    	<div class="d-flex align-items-start flex-column col-sm bg-light">
-    		<h2>コース一覧</h2>
-    		<hr class="my-4">
-    		<p>4品・6品・8品のコースを確認</p>
-      		<div class="mt-auto ml-auto">
-    			<a href="/corse/list" class="btn btn-primary">詳しくはこちら</a>
-    		</div>
-    	</div>
-  	</div>
-</div>
-
-<br><br>
-
-<h1 style="text-align:center;">ユーザー情報編集</h2><br>
-<!-- 権限、ユーザー登録・編集など -->
-<div class="container">
- 	<div class="row">
- 		<div class="d-flex align-items-start flex-column col-sm bg-light">
-    		<h2>新規ユーザー登録</h2>
-    		<hr class="my-4">
-    		<p>従業員やアルバイトの新規登録</p>
-    		<div class="signup mt-auto ml-auto">
-    			<a href="/signup" class="btn btn-success">新規ユーザー登録</a>
-    		</div>
-    	</div>
-	   	<div class="d-flex align-items-start flex-column col-sm bg-light">
-	   		<h2>ユーザー情報編集</h2>
-	   		<hr class="my-4">
-    		<p>従業員やアルバイトの情報を編集</p>
-    		<div class="mt-auto ml-auto">
-    			<a href="user/list" class="btn btn-primary">ユーザー情報編集</a>
-    		</div>
-    	</div>
-    	<div class="d-flex align-items-start flex-column col-sm bg-light">
-    		<h2>各種マニュアル</h2>
-    		<hr class="my-4">
-    		<p>接客時の注意点、電話対応、お会計時のマニュアルなどを確認</p>
-    		<p>基本的な接客時のマニュアルを確認</p>
-      		<button class="btn btn-info mt-auto ml-auto" type="button" >詳しくはこちら</button>
-    		</div>
-    	</div>
-  	</div>
-</div>
-
-<!--<div class="container">
-
-	<div class="header">
-    	<h2 style="text-align:center;">Top Page</h2>
-    </div>
-    <div style="text-align:center;" th:text="'こんにちは ' + ${#authentication.name} + ' さん'"></div>
-    
-    <table class="table">
-  		<thead>
-	 		<tr>
-		    	<th scope="col">#</th>
-    			<th scope="col">ユーザー名</th>
-      			<th scope="col">パスワード</th>
-      			<th scope="col">権限情報</th>
-    		</tr>
-  		</thead>
-  		<tbody>
-    		<tr>
-		      	<td scope="row">1</td>
-      			<td><div th:text="${#authentication.principal.username}"></div></td>
-      			<td><div th:text="${#authentication.principal.password}"></div></td>
-			    <td><div th:text="${#authentication.principal.authorities}"></div></td>
-    		</tr>
-  		</tbody>
-	</table>
-     
-    <form th:action="@{/logout}" method="post">
-        <button type="submit" class="btn btn-danger btn-lg" >ログアウト</button>
-    </form><br>
-    <div class="signup">
-    	<a href="/signup" class="btn btn-success btn-lg">新規ユーザー登録</a>
-    </div><br>
-    <div class="authority">
-    	<a href="/admin/authority" class="btn btn-primary btn-lg">権限編集</a>
-    </div> 
-
-</div>-->
-
+<body class="mb-6">
+	<div th:replace="common/layout:: header"></div>
+  	<h1 class="mt-4 mb-2" th:text="'こんにちは ' + ${#authentication.name}  + ' さん'" style="text-align:center;"></h1>
+  	<h2 class="mt-4 mb-2" style="text-align:center;">社員のホーム画面</h2>
+	<div class="container">
+		<div class="bg-light p-3 p-sm-5 my-4 rounded">
+			<h2 class="display-6">サケラボトーキョーのモットー</h2>
+			<p class="lead">お客様にいろいろな種類の日本酒を味わっていただき、好みの日本酒を見つけていただく。</p>
+	    	<hr class="my-4">
+	    	<h2>＜ 従業員の心得 ＞</h2>
+	    	<ul>
+	    		<li><h4>集中する</h4></li>
+	    		<li><h4>笑顔でいる</h4></li>
+	    		<li><h4>お客様を感動させる</h4></li>
+	    	</ul>
+	  	</div>
+	</div>
+	<h1 style="text-align:center;">各種メニュー編集</h1><br>
+	
+	<div class="container">
+		<!-- メニュー・マニュアルなど -->
+	 	<div class="row">
+		  	<div class="d-flex align-items-start flex-column col-sm bg-light">
+		   		<h2>料理メニュー</h2>
+		   		<hr class="my-4">
+		   		<p>料理の単品メニューを確認</p>
+		   		<div class="mt-auto ml-auto">
+	    			<a href="/menu/list" class="btn btn-primary">詳しくはこちら</a>
+	    		</div>
+	    	</div>
+	    	<div class="d-flex align-items-start flex-column col-sm bg-light">
+	    		<h2>日本酒メニュー</h2>
+	    		<hr class="my-4">
+	    		<p>本日の日本酒一覧を確認</p>
+	      		<div class="mt-auto ml-auto">
+	    			<a href="/sake/list" class="btn btn-warning">※未実装</a>
+	    		</div>
+	    	</div>
+	    	<div class="d-flex align-items-start flex-column col-sm bg-light">
+	    		<h2>コース一覧</h2>
+	    		<hr class="my-4">
+	    		<p>4品・6品・8品のコースを確認</p>
+	      		<div class="mt-auto ml-auto">
+	    			<a href="/corse/list" class="btn btn-primary">詳しくはこちら</a>
+	    		</div>
+	    	</div>
+	  	</div>
+	
+		<br><br>
+		
+		<h1 style="text-align:center;">ユーザー情報編集</h1><br>
+		<!-- 権限、ユーザー登録・編集など -->
+		<div class="container mb-4">
+		 	<div class="row">
+		 		<div class="d-flex align-items-start flex-column col-sm bg-light">
+		    		<h2>新規ユーザー登録</h2>
+		    		<hr class="my-4">
+		    		<p>従業員やアルバイトの新規登録</p>
+		    		<div class="signup mt-auto ml-auto">
+		    			<a href="/user/signup" class="btn btn-success">新規ユーザー登録</a>
+		    		</div>
+		    	</div>
+			   	<div class="d-flex align-items-start flex-column col-sm bg-light">
+			   		<h2>ユーザー情報編集</h2>
+			   		<hr class="my-4">
+		    		<p>従業員やアルバイトの情報を編集</p>
+		    		<div class="mt-auto ml-auto">
+		    			<a href="user/list" class="btn btn-secondary">ユーザー情報編集</a>
+		    		</div>
+		    	</div>
+		    	<div class="d-flex align-items-start flex-column col-sm bg-light">
+		    		<h2>各種マニュアル</h2>
+		    		<hr class="my-4">
+		    		<p>接客時の注意点、電話対応、お会計時のマニュアルなどを確認</p>
+		    		<p>基本的な接客時のマニュアルを確認</p>
+		      		<button class="btn btn-danger mt-auto ml-auto" type="button" >※未実装</button>
+		    	</div>
+		    </div>
+		</div>
+		
+		<!-- cardを使用するか検討中 -->
+		<div class="card-deck mb-3 text-center">
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header">
+					<h4 class="my-0 font-weight-normal">料理メニュー</h4>
+				</div>
+				<div class="card-body d-flex flex-column">
+					<p class="card-title pricing-card-title">料理の単品メニューを確認</p>
+					<button type="button" class="btn btn-lg btn-block btn-primary mt-auto mb-2">料理メニュー一覧</button>
+					<button type="button" class="btn btn-lg btn-block btn-success mt-auto">料理メニュー新規作成</button>
+				</div>
+			</div>
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header">
+					<h4 class="my-0 font-weight-normal">日本酒メニュー</h4>
+				</div>
+				<div class="card-body d-flex flex-column">
+					<p class="card-title pricing-card-title">本日の日本酒一覧を確認</p>
+					<button type="button" class="btn btn-lg btn-block btn-success mt-auto">日本酒メニュー一覧</button>
+				</div>
+			</div>
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header">
+					<h4 class="my-0 font-weight-normal">コース一覧</h4>
+				</div>
+				<div class="card-body d-flex flex-column">
+					<p class="card-title pricing-card-title">4品・6品・8品のコースを確認</p>
+					<button type="button" class="btn btn-lg btn-block btn-success mt-auto">コース一覧</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="common/layout :: footer"></div>
 </body>
 </html>	

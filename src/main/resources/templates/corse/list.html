@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+<!-- Custom styles for this template -->
+<title>コース一覧画面</title>
+</head>
+<body>
+	<div th:replace="common/layout:: header"></div>
+	<div class="container">
+		<h1 class="text-center mt-4 mb-4">コース一覧</h1>
+		<div class="card-deck mb-3 text-center">
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header">
+					<h4 class="my-0 font-weight-normal">4品コース</h4>
+				</div>
+				<div class="card-body d-flex flex-column">
+					<h1 class="card-title pricing-card-title">￥4,700</h1>
+					<ul class="list-unstyled mt-3 mb-4">
+						<li>新玉ねぎと春キャベツのすり流し</li>
+						<li>季節のお造り</li>
+						<li>りんごの豚巻きフリット</li>
+						<li>冷やしきつねうどん</li>
+					</ul>
+					<button type="button" class="btn btn-lg btn-block btn-success mt-auto">4品コースの編集</button>
+				</div>
+			</div>
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header">
+					<h4 class="my-0 font-weight-normal">6品コース</h4>
+				</div>
+				<div class="card-body d-flex flex-column">
+					<h1 class="card-title pricing-card-title">￥5,300</h1>
+					<ul class="list-unstyled mt-3 mb-4">
+						<li>新玉ねぎと春キャベツのすり流し</li>
+						<li>季節のお造り</li>
+						<li>お酒のお供の盛り合わせ</li>
+						<li>和だしロールキャベツ</li>
+						<li>りんごの豚巻きフリット</li>
+						<li>冷やしきつねうどん</li>
+					</ul>
+					<button type="button" class="btn btn-lg btn-block btn-success mt-auto">6品コースの編集</button>
+				</div>
+			</div>
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header">
+					<h4 class="my-0 font-weight-normal">8品コース</h4>
+				</div>
+				<div class="card-body d-flex flex-column">
+					<h1 class="card-title pricing-card-title">￥5,600</h1>
+					<ul class="list-unstyled mt-3 mb-4">
+						<li>新玉ねぎと春キャベツのすり流し</li>
+						<li>季節のお造り</li>
+						<li>お酒のお供の盛り合わせ</li>
+						<li>三陸産生わかめのお出汁</li>
+						<li>和だしロールキャベツ</li>
+						<li>アボカドかに味噌チーズ焼き</li>
+						<li>りんごの豚巻きフリット</li>
+						<li>冷やしきつねうどん</li>
+					</ul>
+					<button type="button" class="btn btn-lg btn-block btn-success mt-auto">8品コースの編集</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="text-center mb-4">
+		<a href="/admin" class="btn btn-lg btn-primary">ホーム画面に戻る</a>
+	</div>
+	<div th:replace="common/layout :: footer"></div>
+</body>
+</html>

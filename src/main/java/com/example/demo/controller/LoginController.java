@@ -27,8 +27,6 @@ public class LoginController {
 	
 	@Autowired
     private UserDetailServiceImpl userDetailsServiceImpl;
-	// @Autowired
-	// private PasswordEncoder passwordEncoder;
 	
 	/**
      * 初期表示画面に遷移する
@@ -72,56 +70,5 @@ public class LoginController {
                 , passwordEncoder.encode("pass"), "ROLE_ADMIN");
         */
         return "login";
-    }
-    
-    @GetMapping("/signup")
-    public String newSignup(SignupForm signupForm) {
-        return "signup";
-    }
-    
-    /**
-     * ユーザー登録フォーム画面から受け取った値から画面遷移を分岐する
-     * @return エラーだった場合、登録画面へのパス
-     * 			
-     */
-    @PostMapping("/signup")
-    public String signup(@Validated SignupForm signupForm, BindingResult result, Model model, HttpServletRequest request) {
-    	
-    	if (result.hasErrors()) {
-            return "signup";
-        }
-    	
-    	if (userDetailsServiceImpl.isExistUser(signupForm.getUsername())) {
-            model.addAttribute("signupError", "ユーザー名 " + signupForm.getUsername() + "は既に登録されています");
-            return "signup";
-        }
-    	
-        try {
-            userDetailsServiceImpl.register(signupForm.getUsername(), signupForm.getPassword(), "ROLE_USER");
-        } catch (DataAccessException e) {
-            model.addAttribute("signupError", "ユーザー登録に失敗しました");
-            return "signup";
-        }
-        
-        /*
-        // ユーザー登録後、一度ログアウト
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-
-        if (authentication instanceof AnonymousAuthenticationToken == false) {
-            SecurityContextHolder.clearContext();
-        }
-
-		// 再度ログイン
-        try {
-            request.login(signupForm.getUsername(), signupForm.getPassword());
-        } catch (ServletException e) {
-            e.printStackTrace();
-        }
-        */
-        
-        model.addAttribute("registerUser", signupForm.getUsername());
-        return "success";
-//        return "redirect:/";
     }
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>ユーザー登録</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+</head>
+<body>
+	<div th:replace="common/layout:: header"></div>
+	<div class="container text-center">
+	    <h2 class="heading mt-4 mb-4 text-center">ユーザー登録</h2>
+	
+	    <!-- エラーが発生した場合、エラーメッセージ出力 -->
+		<div th:if="${validationError}" th:each="error : ${validationError}">
+			<label class="text-danger" th:text="${error}"></label>
+		</div>
+		<div th:if="${signupError}">
+			<label class="text-danger" th:text="${signupError}"></label>
+		</div>
+	        
+	    <form class="form-signin" method="post" th:action="@{/user/signup}" th:object="${signupForm}">
+	        <div class="form-group">
+	        	<div class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="${signupForm.username}"></div>
+	        	<input type="text" id="username" name="username" class="form-control" th:value="${signupForm.username}" placeholder="ユーザー名" autofocus><br>
+	        </div>
+	        <div class="form-group">
+		        <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="${signupForm.password}"></div>
+	    	    <input type="password" id="password" name="password" class="form-control" th:value="${signupForm.password}" placeholder="パスワード"><br>
+	        </div>
+	        <button class="btn btn-lg btn-success btn-block mb-4" type="submit">登録</button>
+	    </form>
+	</div>
+	<div th:replace="common/layout:: footer"></div>
+</body>
+</html>

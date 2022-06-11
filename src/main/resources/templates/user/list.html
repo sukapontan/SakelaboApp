@@ -3,27 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-	<!-- Custom styles for this template -->
 	<title>ユーザー情報編集画面</title>
-	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 	<script>
-	function alert(){
-		let result = confirm('削除しますか？');
-		if(result){
-	  		console.log('削除しました');
-	  		return result
-		}else{
-	  		console.log('削除をとりやめました');
-	  		return result
+		function alert(){
+			let result = confirm('削除しますか？');
+			if(result){
+		  		console.log('削除しました');
+		  		return result
+			}else{
+		  		console.log('削除をとりやめました');
+		  		return result
+			}
 		}
-	}
 	</script>	
 </head>
 <body>
+	<div th:replace="common/layout :: header"></div>
 	<div class="container">
-    <h1 class="text-center">ユーザー情報一覧</h1>
+    <h1 class="text-center mt-2 mb-2">ユーザー情報一覧</h1>
+    <a th:href="@{/user/signup}" class="btn btn-success mt-2 mb-2">新規登録はこちら</a>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -42,10 +40,10 @@
         </tr>
       </tbody>
     </table>
-    <div class="text-center">
-    	<a th:href="@{/signup}" class="btn btn-success">新規登録はこちら</a>
+    <div class="text-center mt-4 mb-4">
     	<a href="/admin" class="btn btn-primary">ホーム画面に戻る</a>
     </div>
   </div>
+  <div th:replace="common/layout :: footer"></div>
 </body>
 </html>

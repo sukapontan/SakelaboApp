@@ -14,6 +14,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
+	<div th:replace="common/layout:: header"></div>
 	<div class="container">
 		<h1 class="text-center">料理メニュー新規登録</h1>
 		
@@ -48,8 +49,56 @@
 						<input type="number" class="form-control" name="price" th:field="*{price}">
 					</div>
 				</div>
-				<!-- <input type="hidden" name="ins_date" value="2022-05-15 15:56:16">
-				<input type="hidden" name="del_flag" value="0"> -->
+				<div class="row mx-md-n5">
+					<div class="col-2 pt-3 border bg-light">
+						対象コース
+					</div>
+					<div class="col py-2 border">
+						<div class="form-check col">
+							<input class="form-check-input" type="radio" name="corse_id" id="corse_id1" value="option1" checked>
+						  	<label class="form-check-label" for="exampleRadios1">
+						    4品コース
+						  	</label>
+						</div>
+						<div class="form-check col">
+							<input class="form-check-input" type="radio" name="corse_id" id="corse_id2" value="option2">
+							<label class="form-check-label" for="exampleRadios2">
+						    6品コース
+						  	</label>
+						</div>
+						<div class="form-check col">
+						  	<input class="form-check-input" type="radio" name="corse_id" id="corse_id3" value="option3">
+						  	<label class="form-check-label" for="exampleRadios3">
+						    8品コース
+						  	</label>
+						</div>
+					</div>
+				</div>
+				<div class="row mx-md-n5">
+					<div class="col-2 pt-3 border bg-light">
+						対象コース
+					</div>
+					<div class="col py-2 border">
+						<div class="form-check col">
+						  	<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+						  	<label class="form-check-label" for="flexCheckDefault">
+						    4品コース
+						  	</label>
+						</div>
+						<div class="form-check col">
+						 	<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+						  	<label class="form-check-label" for="flexCheckChecked">
+						    6品コース
+						  	</label>
+						</div>
+						<div class="form-check col">
+						  	<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+						  	<label class="form-check-label" for="flexCheckDefault">
+						    8品コース
+						  	</label>
+						</div>
+					</div>
+				</div>
 			</div>
 			<br />
 			<div class="text-center">

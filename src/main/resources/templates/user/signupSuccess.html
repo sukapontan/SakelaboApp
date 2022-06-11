@@ -8,11 +8,15 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
-	<h1 style="text-align: center;">ユーザー登録完了</h1>
-	<h3 th:text="登録ユーザー名： + ${registerUser}" style="text-align: center;"></h3>
-	<div class="center-block" style="text-align: center;">
-		<a  class="btn btn-secondary" th:href="@{/user/list}">一覧に戻る</a>
-    	<a class="btn btn-success" href="/admin" role="button">ホーム画面へ戻る</a>
+	<div th:replace="common/layout:: header"></div>
+	<div class="container center-block">
+		<h1 class="text-center mt-4 mb-4">ユーザー登録完了</h1>
+		<h3 class="text-center mt-4 mb-4" th:text="登録ユーザー名： + ${registerUser}"></h3>
+		<div class="center-block mb-4 text-center">
+			<a class="btn btn-lg btn-secondary" th:href="@{/user/list}">一覧に戻る</a>
+	    	<a class="btn btn-lg btn-success" href="/admin" role="button">ホーム画面へ戻る</a>
+	    </div>
     </div>
+    <div th:replace="common/layout:: footer"></div>
 </body>
 </html>

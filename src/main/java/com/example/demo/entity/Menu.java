@@ -34,12 +34,14 @@ public class Menu implements Serializable {
 	 * メニュー名
 	 */
 	@Column(name = "menu_nm")
+	@NotNull
 	private String menu_nm;
 	
 	/**
 	 * メニュー詳細
 	 */
 	@Column(name = "menu_dtl")
+	@NotNull
 	private String menu_dtl;
 	
 	/**
