@@ -11,11 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.app.PasswordResetForm;
 import com.example.demo.app.SignupForm;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
@@ -165,5 +165,41 @@ public class UserController {
 		// 受け取ったIDをもとにユーザー情報を削除
 		userService.deleteUser(id);
 		return "user/deleteSuccess";
+	}
+	
+	/**
+	 * パスワード再設定画面を表示
+	 * @return パスワード変更画面
+	*/
+	@GetMapping("/passwordReset")
+    public String forgotPassword(PasswordResetForm passwordResetForm) {
+        return "user/passwordReset";
+    }
+	
+	/**
+	 * パスワード変更
+	 * @param model Model
+	 * @return パスワード変更完了画面（変更失敗時は入力画面に遷移）
+	*/
+	@PostMapping("/passwordReset")
+    public String passwordReset(@Validated PasswordResetForm passwordResetForm, BindingResult result, Model model, HttpServletRequest request) {
+		
+		System.out.println("パスワード：" + passwordResetForm.getPassword());
+		System.out.println("確認用パスワード：" + passwordResetForm.getPasswordConf());
+		System.out.println("ユーザー名：" + passwordResetForm.getUserName());
+		
+		// ユーザ名からIDを取得する処理が必要
+		
+		if (result.hasErrors()) {
+            return "user/passwordReset";
+        }
+		// 入力したパスワードと確認用パスワードが一致しているかチェック
+		if (!(passwordResetForm.getPassword().equals(passwordResetForm.getPasswordConf()))) {
+			model.addAttribute("passwordResetError", "入力したパスワードが一致しません。");
+			return "user/passwordReset";
+		}
+		
+		userService.updateUser(passwordResetForm);
+		return "user/passwordResetSuccess";
 	}
 }

@@ -27,11 +27,18 @@ public class User implements Serializable {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	/**
 	 * 名前
 	 */
 	@Column(name = "name")
 	private String name;
+	
+	/**
+	 * パスワード
+	 */
+	@Column(name = "password")
+	private String password;
 	
 	/**
 	 * 権限
@@ -53,6 +60,14 @@ public class User implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getAuthority() {

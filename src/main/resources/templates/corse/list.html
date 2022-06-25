@@ -70,7 +70,8 @@
 		</div>
 	</div>
 	<div class="text-center mb-4">
-		<a href="/admin" class="btn btn-lg btn-primary">ホーム画面に戻る</a>
+		<a href="/admin" class="btn btn-lg btn-primary mb-4" sec:authorize="hasRole('ROLE_ADMIN')">ホーム画面に戻る</a>
+		<a href="/part" class="btn btn-primary mb-4" sec:authorize="hasRole('ROLE_USER')">ホーム画面に戻る</a>
 	</div>
 	<div th:replace="common/layout :: footer"></div>
 </body>

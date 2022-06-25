@@ -21,13 +21,11 @@
         <div class="text-danger" style="text-align:center;"th:if="${param.logout}">
             ログアウトしました
         </div>
-        <!-- <label for="username">ユーザー名</label> -->
         <input type="text" id="username" name="username" class="form-control" placeholder="ユーザー名" required autofocus ><br>
-        <!-- <label for="password">パスワード</label> -->
         <input type="password" id="password" name="password" class="form-control" placeholder="パスワード" required ><br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button><br>
         <div class="container" style="text-align: center; font-weight: bold;">
-        	<a href="/passwordEdit" style="border-bottom: solid #767B9E 1px;cursor: pointer">パスワードをお忘れですか？</a>
+        	<a href="/passwordReset" style="border-bottom: solid #767B9E 1px;cursor: pointer">パスワードをお忘れですか？</a>
         </div>
     </form>
 </div>

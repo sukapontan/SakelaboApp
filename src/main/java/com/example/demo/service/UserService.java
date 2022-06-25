@@ -3,9 +3,13 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.Entity;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.app.PasswordResetForm;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 
@@ -48,5 +52,23 @@ public class UserService {
 		Optional<User> user = userRepository.findById(id);
 		userRepository.deleteById(id);
 		return user;
+	}
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
+	public User save(User user, String rawPassword){
+
+	    String encodedPassword = passwordEncoder.encode(rawPassword);
+	    user.setPassword(encodedPassword);
+	    return userRepository.save(user);
+	}
+
+	public void updateUser(PasswordResetForm passwordResetForm) {
+		String encodedPassword = passwordEncoder.encode(passwordResetForm.getPassword());
+		System.out.println(encodedPassword);
+		passwordResetForm.setPassword(encodedPassword);
+		userRepository.save(passwordResetForm.getUserName(), encodedPassword);
+	    return;
 	}
 }
