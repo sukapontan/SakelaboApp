@@ -18,7 +18,7 @@ import lombok.Data;
  */
 @Entity
 @Data
-@Table(name = "menu")
+@Table(name = "menus")
 public class Menu implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -51,6 +51,19 @@ public class Menu implements Serializable {
 	@NotNull
 	@Positive // 数値が正であることを検証する。
 	private int price;
+
+	/**
+	 * メニュー種別
+	 */
+	@Column(name = "genre")
+	@NotNull
+	private String genre;
+	
+	/**
+	 * 備考
+	 */
+	@Column(name = "note")
+	private String note;
 	
 	/**
 	 * 作成日
@@ -60,10 +73,23 @@ public class Menu implements Serializable {
 	private String ins_date;
 	
 	/**
+	 * 作成者
+	 * 
+	 */
+	@Column(name = "ins_user")
+	private String ins_user;
+	
+	/**
 	 * 更新日
 	 */
 	@Column(name = "upd_date")
 	private String upd_date;
+	
+	/**
+	 * 更新者
+	 */
+	@Column(name = "upd_user")
+	private String upd_user;
 	
 	/**
 	 * 削除フラグ
@@ -73,6 +99,42 @@ public class Menu implements Serializable {
 	
 	public Long getMenu_id() {
 		return menu_id;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getIns_user() {
+		return ins_user;
+	}
+
+	public void setIns_user(String ins_user) {
+		this.ins_user = ins_user;
+	}
+
+	public String getUpd_user() {
+		return upd_user;
+	}
+
+	public void setUpd_user(String upd_user) {
+		this.upd_user = upd_user;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public void setMenu_id(Long menu_id) {

@@ -10,9 +10,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous">
-	
+
 	<!-- ログアウト時ポップアップ表示 -->
-	function alertLogout(){
+	function alert(){
 		let result = confirm('ログアウトしますか？');
 		if(result){
 	  		console.log('ログアウトしました');
@@ -61,7 +61,7 @@
 				</ul>
 				<a class="nav-link text-white" th:text="'ユーザー：' + ${#authentication.name}"></a>
 				<form class="form-inline my-2 my-lg-0" th:action="@{/logout}" name="logout" method="post">
-					<a class="text-white" href="javascript:logout.submit()" onClick="return alertLogout();">ログアウト</a>
+					<a class="text-white" href="javascript:logout.submit()">ログアウト</a>
 				</form>
 				<br>
 			</div>

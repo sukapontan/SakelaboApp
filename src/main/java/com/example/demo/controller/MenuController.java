@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,9 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.app.SignupForm;
 import com.example.demo.entity.Menu;
-import com.example.demo.entity.User;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.service.MenuService;
 
@@ -58,7 +58,7 @@ public class MenuController {
 	 * @return メニュー新規登録完了画面
 	 */
 	@PostMapping(value = "/menu/signup")
-	public String menuRegister(@Validated  Menu menu, BindingResult result, Model model) {
+	public String menuRegister(@Validated  Menu menu, BindingResult result, Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		
 		if (result.hasErrors()) {
 			List<String> errorList = new ArrayList<String>();
@@ -68,15 +68,14 @@ public class MenuController {
             model.addAttribute("validationError", errorList);
             return "menu/signup";
         }
-		
-		menuService.signup(menu);
+		menuService.signup(menu, userDetails);
 		return "menu/registerSuccess";
 	}
 	
 	/**
 	 * メニュー情報編集画面を表示
 	 * @param model Model
-	 * @return ユーザー情報編集画面
+	 * @return メニュー情報編集画面
 	*/
 	@GetMapping(value = "/menu/edit/{id}")
 	public String userEdit(Model model,@PathVariable Long id) {
@@ -92,9 +91,9 @@ public class MenuController {
 	 * @return メニュー情報更新完了画面
 	*/
 	@PostMapping(value = "/menu/update")
-	public String userUpdate(Model model, Menu menu) {
+	public String userUpdate(Model model, Menu menu, @AuthenticationPrincipal UserDetails userDetails) {
 		// 受け取ったIDをもとにメニュー情報を更新
-		Menu updateMenu = menuService.updateMenu(menu);
+		Menu updateMenu = menuService.updateMenu(menu, userDetails);
 		model.addAttribute("updateMenu", updateMenu);
 		return "menu/updateSuccess";
 	}

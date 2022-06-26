@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div th:replace="common/layout:: header"></div>
-	<div class="container">
+	<div class="container mt-4 mb-4">
 		<h1 class="text-center">料理メニュー新規登録</h1>
 		
 		<!-- エラーが発生した場合、エラーメッセージ出力 -->
@@ -38,7 +38,7 @@
 						メニュー内容詳細<span class="text-danger">※</span>
 					</div>
 					<div class="col py-2 border">
-						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="menu_dtl" th:field="*{menu_dtl}"></textarea>
+						<textarea class="form-control" id="menu_dtl" rows="3" name="menu_dtl" th:field="*{menu_dtl}"></textarea>
 					</div>
 				</div>
 				<div class="row mx-md-n5">
@@ -51,27 +51,47 @@
 				</div>
 				<div class="row mx-md-n5">
 					<div class="col-2 pt-3 border bg-light">
-						対象コース
+						メニュー区分<span class="text-danger">※</span>
 					</div>
 					<div class="col py-2 border">
 						<div class="form-check col">
-							<input class="form-check-input" type="radio" name="corse_id" id="corse_id1" value="option1" checked>
-						  	<label class="form-check-label" for="exampleRadios1">
-						    4品コース
-						  	</label>
+							<input class="form-check-input" type="radio" name="genre" id="genre1" value="1" checked>
+						  	<label class="form-check-label" for="genreRadios1">【汁】</label>
 						</div>
 						<div class="form-check col">
-							<input class="form-check-input" type="radio" name="corse_id" id="corse_id2" value="option2">
-							<label class="form-check-label" for="exampleRadios2">
-						    6品コース
-						  	</label>
+							<input class="form-check-input" type="radio" name="genre" id="genre2" value="2">
+							<label class="form-check-label" for="genreRadios2">【刺】</label>
 						</div>
 						<div class="form-check col">
-						  	<input class="form-check-input" type="radio" name="corse_id" id="corse_id3" value="option3">
-						  	<label class="form-check-label" for="exampleRadios3">
-						    8品コース
-						  	</label>
+						  	<input class="form-check-input" type="radio" name="genre" id="genre3" value="3">
+						  	<label class="form-check-label" for="genreRadios3">【供】</label>
 						</div>
+						<div class="form-check col">
+						  	<input class="form-check-input" type="radio" name="genre" id="genre4" value="4">
+						  	<label class="form-check-label" for="genreRadios4">【出汁】</label>
+						</div>
+						<div class="form-check col">
+						  	<input class="form-check-input" type="radio" name="genre" id="genre5" value="5">
+						  	<label class="form-check-label" for="genreRadios5">【焼】</label>
+						</div>
+						<div class="form-check col">
+						  	<input class="form-check-input" type="radio" name="genre" id="genre6" value="6">
+						  	<label class="form-check-label" for="genreRadios6">【揚】</label>
+						</div>
+						<div class="form-check col">
+						  	<input class="form-check-input" type="radio" name="genre" id="genre7" value="7">
+						  	<label class="form-check-label" for="genreRadios7">【煮】</label>
+						</div>
+						<div class="form-check col">
+						  	<input class="form-check-input" type="radio" name="genre" id="genre8" value="8">
+						  	<label class="form-check-label" for="genreRadios8">【〆】</label>
+						</div>
+					</div>
+				</div>
+				<div class="row mx-md-n5">
+					<div class="col-2 pt-3 border bg-light">備考</div>
+					<div class="col py-2 border">
+						<textarea class="form-control" id="note" rows="3" name=note th:field="*{note}"></textarea>
 					</div>
 				</div>
 				<div class="row mx-md-n5">
@@ -80,19 +100,19 @@
 					</div>
 					<div class="col py-2 border">
 						<div class="form-check col">
-						  	<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+						  	<input class="form-check-input disabled" type="checkbox" value="" id="flexCheckDefault">
 						  	<label class="form-check-label" for="flexCheckDefault">
 						    4品コース
 						  	</label>
 						</div>
 						<div class="form-check col">
-						 	<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+						 	<input class="form-check-input disabled" type="checkbox" value="" id="flexCheckChecked">
 						  	<label class="form-check-label" for="flexCheckChecked">
 						    6品コース
 						  	</label>
 						</div>
 						<div class="form-check col">
-						  	<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+						  	<input class="form-check-input disabled" type="checkbox" value="" id="flexCheckDefault">
 						  	<label class="form-check-label" for="flexCheckDefault">
 						    8品コース
 						  	</label>
@@ -108,5 +128,6 @@
 			</div>
 		</form>
 	</div>
+	<div th:replace="common/layout :: footer"></div>
 </body>
 </html>

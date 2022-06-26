@@ -7,14 +7,14 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 	<title>メニュー編集画面</title>
 	<script>
-		function alert(){
+		function alert() {
 			let result = confirm('削除しますか？');
-			if(result){
+			if(result) {
 		  		console.log('削除しました');
-		  		return result
-			}else{
+		  		return result;
+			} else {
 		  		console.log('削除をとりやめました');
-		  		return result
+		  		return result;
 			}
 		}
 	</script>	
@@ -32,6 +32,7 @@
 	          		<th>メニュー詳細</th>
 	          		<th>価格</th>
 	          		<th>おすすめペアリング</th>
+	          		<th>最終更新日</th>
 	          		<th sec:authorize="hasRole('ROLE_ADMIN')">編集</th>
 	          		<th sec:authorize="hasRole('ROLE_ADMIN')">削除</th>
 	        	</tr>
@@ -42,6 +43,7 @@
 		          	<td th:text="*{menu_dtl}"></td>
 		          	<td th:text="*{price}"></td>
 		          	<td>日本酒名</td>
+		          	<td th:text="*{upd_date}"></td>
 	          		<td><a th:href="@{/menu/edit/{id}(id=*{menu_id})}" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')">編集</a></td>
 	          		<td><a th:href="@{/menu/delete/{id}(id=*{menu_id})}" class="btn btn-danger" onClick="return alert()" sec:authorize="hasRole('ROLE_ADMIN')">削除</a></td>
 	        	</tr>

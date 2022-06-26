@@ -18,13 +18,13 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
 	
 	// メニュー新規登録のSQLを独自に設定
 	@Modifying
-	@Query(value = "INSERT INTO menu(menu_nm, menu_dtl, price) VALUES(:menu_nm, :menu_dtl, :price) ", nativeQuery = true) // SQL
+	@Query(value = "INSERT INTO menus(menu_nm, menu_dtl, price, genre, note, ins_user) VALUES(:menu_nm, :menu_dtl, :price, :genre, :note, :ins_user) ", nativeQuery = true) // SQL
 	@Transactional
-	void signupMenu(String menu_nm, String menu_dtl, int price);
+	void signupMenu(String menu_nm, String menu_dtl, int price, String genre, String note, String ins_user);
 	
 	// メニュー更新のSQLを独自に設定
 	@Modifying
-	@Query(value = "UPDATE menu SET menu_nm = :menu_nm, menu_dtl = :menu_dtl, price = :price WHERE menu_id = :menu_id", nativeQuery = true) // SQL
+	@Query(value = "UPDATE menus SET menu_nm = :menu_nm, menu_dtl = :menu_dtl, price = :price, genre = :genre, note = :note, upd_user = :upd_user WHERE menu_id = :menu_id", nativeQuery = true) // SQL
 	@Transactional
-	void updateMenu(String menu_nm, String menu_dtl, int price, Long menu_id);
+	void updateMenu(String menu_nm, String menu_dtl, int price, String genre, String note, String upd_user, Long menu_id);
 }

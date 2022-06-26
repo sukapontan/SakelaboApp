@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Menu;
@@ -38,10 +40,16 @@ public class MenuService {
 	/*public Menu signup(Menu menu) {
 		return (Menu) menuRepository.signupMenu(menu);
 	}*/
-	public void signup(Menu menu) {
-		menuRepository.signupMenu(menu.getMenu_nm(), menu.getMenu_dtl(), menu.getPrice());
-		//System.out.println(menu.getMenu_nm());
-		//System.out.println(menu.getMenu_dtl());
+	public void signup(Menu menu, UserDetails userDetails) {
+		
+		String menu_nm = menu.getMenu_nm();
+		String menu_dtl = menu.getMenu_dtl();
+		int price = menu.getPrice();
+		String genre = menu.getGenre();
+		String note = menu.getNote();
+		String ins_user = userDetails.getUsername();
+		
+		menuRepository.signupMenu(menu_nm, menu_dtl, price, genre, note, ins_user);
 		return;
 	}
 	
@@ -50,8 +58,17 @@ public class MenuService {
 	 * 
 	 * @return メニューオブジェクト
 	 */
-	public Menu updateMenu(Menu menu) {
-		menuRepository.updateMenu(menu.getMenu_nm(), menu.getMenu_dtl(), menu.getPrice(), menu.getMenu_id());
+	public Menu updateMenu(Menu menu, UserDetails userDetails) {
+		
+		String menu_nm = menu.getMenu_nm();
+		String menu_dtl = menu.getMenu_dtl();
+		int price = menu.getPrice();
+		String genre = menu.getGenre();
+		String note = menu.getNote();
+		String upd_user = userDetails.getUsername();
+		Long menu_id = menu.getMenu_id();
+		
+		menuRepository.updateMenu(menu_nm, menu_dtl, price, genre, note, upd_user, menu_id);
 		return menu;
 	}
 	

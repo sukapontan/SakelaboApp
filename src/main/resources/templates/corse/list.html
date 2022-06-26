@@ -13,8 +13,8 @@
 </head>
 <body>
 	<div th:replace="common/layout:: header"></div>
-	<div class="container">
-		<h1 class="text-center mt-4 mb-4">コース一覧</h1>
+	<div class="container mt-4 mb-4">
+		<h1 class="text-center mb-4">コース一覧</h1>
 		<div class="card-deck mb-3 text-center">
 			<div class="card mb-4 shadow-sm">
 				<div class="card-header">
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="text-center mb-4">
+	<div class="text-center">
 		<a href="/admin" class="btn btn-lg btn-primary mb-4" sec:authorize="hasRole('ROLE_ADMIN')">ホーム画面に戻る</a>
 		<a href="/part" class="btn btn-primary mb-4" sec:authorize="hasRole('ROLE_USER')">ホーム画面に戻る</a>
 	</div>
