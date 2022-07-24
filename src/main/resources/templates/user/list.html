@@ -34,7 +34,7 @@
       <tbody>
         <tr th:each="user : ${userlist}" th:object="${user}" class="align-middle">
           <td th:text="*{name}"></td>
-          <td th:text="*{authority}"></td>
+          <td th:text="*{authority.equals('ROLE_ADMIN')} ? 社員 : アルバイト"></td>
           <td><a th:href="@{/user/edit/{id}(id=*{id})}" class="btn btn-primary">編集</a></td>
           <td><a th:href="@{/user/delete/{id}(id=*{id})}" class="btn btn-danger" onClick="return alert()">削除</a></td>
         </tr>

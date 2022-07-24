@@ -22,7 +22,7 @@
 <body>
 	<div th:replace="common/layout:: header"></div>
 	<div class="container">
-    	<h1 class="text-center mt-2 mb-2">料理メニュー一覧</h1>
+    	<h1 class="text-center mt-4 mb-4">料理メニュー一覧</h1>
     	<div class="float-end"></div>
     	<a th:href="@{/menu/signup}" class="btn btn-success mt-2 mb-2" sec:authorize="hasRole('ROLE_ADMIN')">新規登録はこちら</a>
     	<table class="table table-striped">

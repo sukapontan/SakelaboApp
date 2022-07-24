@@ -10,8 +10,8 @@
 </head>
 <body class="mb-6">
 	<div th:replace="common/layout:: header"></div>
-  	<h1 class="mt-4 mb-2" th:text="'こんにちは ' + ${#authentication.name}  + ' さん'" style="text-align:center;"></h1>
-  	<h2 class="mt-4 mb-2" style="text-align:center;">社員のホーム画面</h2>
+  	<h1 class="mt-4 mb-2" th:text="'こんにちは 、' + ${#authentication.name}  + ' さん'" style="text-align:center;"></h1>
+  	<h2 class="mt-4 mb-2" style="text-align:center;">【社員のホーム画面】</h2>
 	<div class="container">
 		<div class="bg-light p-3 p-sm-5 my-4 rounded">
 			<h2 class="display-6">サケラボトーキョーのモットー</h2>
@@ -106,6 +106,7 @@
 				</div>
 				<div class="card-body d-flex flex-column">
 					<p class="card-title pricing-card-title">本日の日本酒一覧を確認</p>
+					<button type="button" class="btn btn-lg btn-block btn-success mt-auto">日本酒メニュー新規作成</button>
 					<button type="button" class="btn btn-lg btn-block btn-success mt-auto">日本酒メニュー一覧</button>
 				</div>
 			</div>
