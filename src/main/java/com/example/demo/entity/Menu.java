@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -14,7 +17,7 @@ import javax.validation.constraints.Positive;
 import lombok.Data;
 
 /**
- * ユーザー情報 Entity
+ * メニュー情報 Entity
  */
 @Entity
 @Data
@@ -22,11 +25,15 @@ import lombok.Data;
 public class Menu implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	@ManyToOne
+	@JoinColumn(name="menu_id", insertable = false, updatable = false)
+	private Menu menu;
+	
 	/**
 	 * メニューID
 	 */
 	@Id
-	@Column(name = "menu_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long menu_id;
 	
@@ -34,7 +41,7 @@ public class Menu implements Serializable {
 	 * メニュー名
 	 */
 	@Column(name = "menu_nm")
-	@NotNull
+	@NotNull(message = "メニュー名は必須です")
 	private String menu_nm;
 	
 	/**
@@ -48,7 +55,7 @@ public class Menu implements Serializable {
 	 * 価格
 	 */
 	@Column(name = "price")
-	@NotNull
+	@NotNull(message = "価格は0円以上で設定してください")
 	@Positive // 数値が正であることを検証する。
 	private int price;
 
@@ -56,7 +63,7 @@ public class Menu implements Serializable {
 	 * メニュー種別
 	 */
 	@Column(name = "genre")
-	@NotNull
+	@NotNull(message = "メニュー区分を選択してください")
 	private String genre;
 	
 	/**
@@ -96,7 +103,7 @@ public class Menu implements Serializable {
 	 */
 	@Column(name = "del_flag")
 	private String del_flag;
-	
+		
 	public Long getMenu_id() {
 		return menu_id;
 	}

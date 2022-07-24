@@ -30,7 +30,7 @@ public class MenuController {
 	MenuService menuService;
 	
 	/**
-	 * メニュー情報一覧画面を表示
+	 * メニュー情報一覧画面を表示(社員用)
 	 * 
 	 * @param model Model
 	 * @return メニュー情報一覧画面

@@ -184,12 +184,6 @@ public class UserController {
 	@PostMapping("/passwordReset")
     public String passwordReset(@Validated PasswordResetForm passwordResetForm, BindingResult result, Model model, HttpServletRequest request) {
 		
-		System.out.println("パスワード：" + passwordResetForm.getPassword());
-		System.out.println("確認用パスワード：" + passwordResetForm.getPasswordConf());
-		System.out.println("ユーザー名：" + passwordResetForm.getUserName());
-		
-		// ユーザ名からIDを取得する処理が必要
-		
 		if (result.hasErrors()) {
             return "user/passwordReset";
         }
@@ -197,6 +191,12 @@ public class UserController {
 		if (!(passwordResetForm.getPassword().equals(passwordResetForm.getPasswordConf()))) {
 			model.addAttribute("passwordResetError", "入力したパスワードが一致しません。");
 			return "user/passwordReset";
+		}
+		
+		// userテーブルに入力したユーザが存在するかチェック
+		if (!(userDetailsServiceImpl.isExistUser(passwordResetForm.getUserName()))) {
+            model.addAttribute("passwordUpdateError", "ユーザー名 " + passwordResetForm.getUserName() + "が存在しません");
+            return "user/passwordReset";
 		}
 		
 		userService.updateUser(passwordResetForm);

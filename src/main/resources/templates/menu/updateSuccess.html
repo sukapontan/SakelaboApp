@@ -11,9 +11,6 @@
 	<div th:replace="common/layout:: header"></div>
 	<div class="container mt-4 mb-4">
 		<h1 style="text-align: center;">メニュー情報更新成功</h1>
-		<h3 th:text="更新後メニュー名： + ${updateMenu.menu_nm}" style="text-align: center;"></h3>
-		<h3 th:text="更新後メニュー詳細： + ${updateMenu.menu_dtl}" style="text-align: center;"></h3>
-		<h3 th:text="更新後メニュー価格： + ${updateMenu.price} + 円" style="text-align: center;"></h3>
 		<div class="center-block" style="text-align: center;">
 			<a class="btn btn-secondary" href="/menu/list">一覧に戻る</a>
 	    	<a class="btn btn-success" href="/admin" role="button">ホーム画面へ戻る</a>

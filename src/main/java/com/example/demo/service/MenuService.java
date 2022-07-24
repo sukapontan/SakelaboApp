@@ -17,6 +17,7 @@ import com.example.demo.repository.MenuRepository;
  */
 @Service
 public class MenuService {
+	
 	/**
 	 * メニュー情報 Repository
 	 */
@@ -25,7 +26,6 @@ public class MenuService {
 	
 	/**
 	 * メニュー情報 全検索
-	 * 
 	 * @return 検索結果
 	 */
 	public List<Menu> searchAll() {
@@ -34,12 +34,8 @@ public class MenuService {
 	
 	/**
 	 * メニュー情報 新規登録
-	 * 
 	 * @return なし
 	 */
-	/*public Menu signup(Menu menu) {
-		return (Menu) menuRepository.signupMenu(menu);
-	}*/
 	public void signup(Menu menu, UserDetails userDetails) {
 		
 		String menu_nm = menu.getMenu_nm();
@@ -54,8 +50,7 @@ public class MenuService {
 	}
 	
 	/**
-	 * メニュー情報更新
-	 * 
+	 * メニュー情報更新 
 	 * @return メニューオブジェクト
 	 */
 	public Menu updateMenu(Menu menu, UserDetails userDetails) {
@@ -74,7 +69,6 @@ public class MenuService {
 	
 	/**
 	 * メニュー情報削除
-	 * 
 	 * @return メニューオブジェクト 
 	 */
 	public Optional<Menu> deleteUser(Long id) {
