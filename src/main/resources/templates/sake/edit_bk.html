@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>日本酒メニュー編集画面</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<style>
+    .imagePreview {
+        width: 100%;
+        height: 180px;
+        background-position: center center;
+        background-size: cover;
+        -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
+        display: inline-block;
+    }
+	</style>
+</head>
+<body>
+	<div th:replace="common/layout:: header"></div>
+	<div class="container mt-4 mb-4 text-center">
+		<h2 class="text-center mt-4 mb-4">日本酒メニュー編集</h2>
+		<!-- メッセージが存在する場合、表示 -->
+		<div th:if="${message}" >
+			<label class="text-danger" th:text="${message}"></label>
+		</div>
+        <div class="col-sm-4">
+            <form id="data_upload_form" action="@{/admin/sake/edit}" method="post" enctype="multipart/form-data">
+                <div class="imagePreview"></div>
+                <div class="input-group">
+                    <label class="input-group-btn">
+                        <span class="btn btn-primary">
+                            ファイル選択<input type="file" style="display:none" class="uploadFile">
+                        </span>
+                    </label>
+                    <input type="text" class="form-control" readonly="" value="選択されていません">
+                </div>
+                <input type="submit" class="btn btn-primary mt-4 mb-4" value="　送信　">
+            </form>
+        </div>
+    </div>
+	<div class="text-center mt-4 mb-4">
+		<a class="btn btn-success" href="/admin" role="button">ホーム画面へ戻る</a>
+	</div>
+	<div th:replace="common/layout :: footer"></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+	 // 主処理部
+    $(function(){
+    	
+    	// CSRF対策のため、設定
+    	let token = $("meta[name='_csrf']").attr("content");
+        let header = $("meta[name='_csrf_header']").attr("content");
+        $(document).ajaxSend(function(e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+
+        // アップロードボタンを押下した
+        $("#data_upload_form").submit(function(event){
+            // 要素規定の動作をキャンセルする
+            event.preventDefault();
+
+            var ajaxUrl = "/admin/sake/edit?"
+
+            // ファイル種類
+            ajaxUrl += "filetype=jpg";
+            
+            if(window.FormData){
+                var formData = new FormData($(this)[0]);
+                
+                console.log(formData);
+                
+                $.ajax({
+                    type : "POST",                  // HTTP通信の種類
+                    url  : ajaxUrl,                 // リクエストを送信する先のURL
+                    dataType : "text",              // サーバーから返されるデータの型
+                    data : formData,                // サーバーに送信するデータ
+                    processData : false,
+                    contentType: false,
+                }).done(function(data) {        // Ajax通信が成功した時の処理
+                    alert("アップロードが完了しました。");
+                }).fail(function(XMLHttpRequest, textStatus, errorThrown) { // Ajax通信が失敗した時の処理
+                    alert("アップロードが失敗しました。");
+                });
+            }else{
+                alert("アップロードに対応できていないブラウザです。");
+            }
+        });
+    });
+
+    $(document).on('change', ':file', function() {
+        var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.parent().parent().next(':text').val(label);
+
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+        if (/^image/.test( files[0].type)){ // only image file
+            var reader = new FileReader(); // instance of the FileReader
+            reader.readAsDataURL(files[0]); // read the local file
+            reader.onloadend = function(){ // set image data as background of div
+               input.parent().parent().parent().prev('.imagePreview').css("background-image", "url("+this.result+")");
+            }
+        }
+    });
+    </script>
+</body>
+<meta th:name="_csrf" th:content="${_csrf.token}"/>
+<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+</html>

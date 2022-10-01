@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import java.util.Iterator;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,4 +27,8 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
 	@Query(value = "UPDATE menus SET menu_nm = :menu_nm, menu_dtl = :menu_dtl, price = :price, genre = :genre, note = :note, upd_user = :upd_user WHERE menu_id = :menu_id", nativeQuery = true) // SQL
 	@Transactional
 	void updateMenu(String menu_nm, String menu_dtl, int price, String genre, String note, String upd_user, Long menu_id);
+	
+	// アルバイト用のメニューリスト一覧を返却
+	@Query(value = "SELECT a.* FROM menus a INNER JOIN corse_menu b ON a.menu_id = b.menu_id WHERE b.corse_id = 3 ORDER BY genre", nativeQuery = true) // SQL
+	List<Menu> partSelectMenu();
 }

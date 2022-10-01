@@ -11,12 +11,13 @@
 <body>
 	<div th:replace="common/layout:: header"></div>
 	<div class="container text-center">
-	    <h2 class="heading mt-4 mb-4 text-center">ユーザー登録</h2>
+	    <h2 class="heading mt-4 mb-4 text-center">新規ユーザー登録</h2>
 	
-	    <!-- エラーが発生した場合、エラーメッセージ出力 -->
+	    <!-- バリデーションエラーが発生した場合、エラーメッセージ出力 -->
 		<div th:if="${validationError}" th:each="error : ${validationError}">
 			<label class="text-danger" th:text="${error}"></label>
 		</div>
+		<!-- エラーが発生した場合、エラーメッセージ出力 -->
 		<div th:if="${signupError}">
 			<label class="text-danger" th:text="${signupError}"></label>
 		</div>
@@ -32,6 +33,10 @@
 	        </div>
 	        <button class="btn btn-lg btn-success btn-block mb-4" type="submit">登録</button>
 	    </form>
+	    
+	    <div class="text-center mt-4 mb-4">
+			<a href="/admin" class="btn btn-lg btn-primary mb-4">ホーム画面に戻る</a>
+		</div>
 	</div>
 	<div th:replace="common/layout:: footer"></div>
 </body>

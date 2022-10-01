@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<title>日本酒メニュー閲覧画面</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div th:replace="common/layout:: header"></div>
+	<div class="container mt-4 mb-4">
+		<h1 class="text-center text-primary mt-4 mb-4">本日の日本酒メニュー</h1>
+		<img class="img-fluid" th:src="@{/images/sake/sakeMenu.jpg}">
+	</div>
+	<div class="text-center mt-4 mb-4">
+		<a class="btn btn-success" href="/part" role="button">ホーム画面へ戻る</a>
+	</div>
+	<div th:replace="common/layout:: footer"></div>
+</body>
+</html>

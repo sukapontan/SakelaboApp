@@ -16,7 +16,7 @@
 <body>
 	<div th:replace="common/layout:: header"></div>
 	<div class="container mt-4 mb-4">
-		<h1 class="text-center">料理メニュー新規登録</h1>
+		<h1 class="text-center mt-4 mb-4">料理メニュー新規登録</h1>
 		
 		<!-- エラーが発生した場合、エラーメッセージ出力 -->
 		<div th:if="${validationError}" th:each="error : ${validationError}">
@@ -24,7 +24,21 @@
 		</div>
 		
 		<form th:action="@{/menu/signup}" th:method="post" th:object="${menu}">
-			<div>
+			<div class="container">
+				<!-- 
+				<div>
+					<label for="menuImg" class="text-muted">イメージ画像</label>
+   					<input id="menuImg" type="file" accept="image/*" class="form-control" name="menuImg" th:field="*{menu_img}" required>
+				</div> -->
+				<!-- 画像アップロード機能未実装 -->
+				<div class="row mx-md-n5">
+					<div class="col-2 pt-3 border bg-light">
+							メニュー画像<span class="text-danger">※</span>
+					</div>
+					<div class="col py-2 border">
+						<input type="file" id="menuImg">
+					</div>
+				</div>
 				<div class="row mx-md-n5">
 					<div class="col-2 pt-3 border bg-light">
 						メニュー名<span class="text-danger">※</span>

@@ -143,13 +143,13 @@ public class UserController {
 	}
 	
 	/**
-	 * ユーザー情報編集画面を表示
+	 * ユーザー情報更新
 	 * @param model Model
 	 * @return ユーザー情報編集画面
 	*/
 	@PostMapping(value = "/user/update")
 	public String userUpdate(Model model, User user) {
-		// 受け取ったIDをもとにユーザー情報を更新
+		// 受け取ったユーザー情報を更新
 		User updateUser = userService.updateUser(user);
 		model.addAttribute("updateUser", updateUser);
 		return "user/updateSuccess";

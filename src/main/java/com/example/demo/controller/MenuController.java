@@ -43,6 +43,19 @@ public class MenuController {
 	}
 	
 	/**
+	 * メニュー情報一覧画面を表示(アルバイト用)
+	 * 
+	 * @param model Model
+	 * @return メニュー情報一覧画面
+	 */
+	@GetMapping(value = "/part/menu/list")
+	public String partMenuList(Model model) {
+		List<Menu> menuList = menuService.partSearchAll();
+		model.addAttribute("menulist", menuList);
+		return "menu/list";
+	}
+	
+	/**
 	 * メニュー新規登録画面を表示
 	 * 
 	 * @return メニュー新規登録画面
@@ -75,10 +88,10 @@ public class MenuController {
 	/**
 	 * メニュー情報編集画面を表示
 	 * @param model Model
-	 * @return メニュー情報編集画面
+	 * @return メニュー編集画面
 	*/
 	@GetMapping(value = "/menu/edit/{id}")
-	public String userEdit(Model model,@PathVariable Long id) {
+	public String menuEdit(Model model,@PathVariable Long id) {
 		// 受け取ったIDのメニュー情報を取得
 		Optional<Menu> menu = repository.findById(id);
 		model.addAttribute("menu", menu);
@@ -86,12 +99,27 @@ public class MenuController {
 	}
 	
 	/**
+	 * メニュー詳細画面を表示
+	 * @param model Model
+	 * @return メニュー詳細画面
+	*/
+	@GetMapping(value = "/menu/detail/{id}")
+	public String menuDetail(Model model,@PathVariable Long id) {
+		// 受け取ったIDのメニュー詳細情報を取得
+		Optional<Menu> menu = repository.findById(id);
+		model.addAttribute("menu", menu.get());
+//		System.out.println(menu);
+//		System.out.println(menu.get());
+		return "menu/detail";
+	}	
+	
+	/**
 	 * メニュー情報更新処理
 	 * @param model Model
 	 * @return メニュー情報更新完了画面
 	*/
 	@PostMapping(value = "/menu/update")
-	public String userUpdate(Model model, Menu menu, @AuthenticationPrincipal UserDetails userDetails) {
+	public String menuUpdate(Model model, Menu menu, @AuthenticationPrincipal UserDetails userDetails) {
 		// 受け取ったIDをもとにメニュー情報を更新
 		Menu updateMenu = menuService.updateMenu(menu, userDetails);
 		model.addAttribute("updateMenu", updateMenu);
@@ -104,7 +132,7 @@ public class MenuController {
 	 * @return メニュー情報削除完了画面
 	*/
 	@GetMapping(value = "/menu/delete/{id}")
-	public String userDelete(@PathVariable Long id) {
+	public String menuDelete(@PathVariable Long id) {
 		// 受け取ったIDをもとにユーザー情報を削除
 		menuService.deleteUser(id);
 		return "menu/deleteSuccess";

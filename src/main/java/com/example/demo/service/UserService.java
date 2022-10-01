@@ -40,7 +40,8 @@ public class UserService {
 	 * @return
 	 */
 	public User updateUser(User user) {
-		return userRepository.save(user);
+		userRepository.update(user.getName(), user.getAuthority());
+		return user;
 	}
 
 	/**

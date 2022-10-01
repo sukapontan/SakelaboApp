@@ -29,10 +29,9 @@
       		<thead>
         		<tr>
 	          		<th>メニュー名</th>
-	          		<th>メニュー詳細</th>
-	          		<th>価格</th>
-	          		<th>おすすめペアリング</th>
+	          		<th>メニュー内容</th>
 	          		<th>最終更新日</th>
+	          		<th>詳細</th>
 	          		<th sec:authorize="hasRole('ROLE_ADMIN')">編集</th>
 	          		<th sec:authorize="hasRole('ROLE_ADMIN')">削除</th>
 	        	</tr>
@@ -41,9 +40,8 @@
 	        	<tr th:each="menu : ${menulist}" th:object="${menu}" class="align-middle">
 		          	<td th:text="*{menu_nm}"></td>
 		          	<td th:text="*{menu_dtl}"></td>
-		          	<td th:text="*{price}"></td>
-		          	<td>日本酒名</td>
 		          	<td th:text="*{upd_date}"></td>
+	          		<td><a th:href="@{/menu/detail/{id}(id=*{menu_id})}" class="btn btn-success">詳細</a></td>
 	          		<td><a th:href="@{/menu/edit/{id}(id=*{menu_id})}" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')">編集</a></td>
 	          		<td><a th:href="@{/menu/delete/{id}(id=*{menu_id})}" class="btn btn-danger" onClick="return alert()" sec:authorize="hasRole('ROLE_ADMIN')">削除</a></td>
 	        	</tr>

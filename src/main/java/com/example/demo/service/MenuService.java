@@ -25,11 +25,19 @@ public class MenuService {
 	private MenuRepository menuRepository;
 	
 	/**
-	 * メニュー情報 全検索
+	 * メニュー情報 全検索 社員用
 	 * @return 検索結果
 	 */
 	public List<Menu> searchAll() {
 		return (List<Menu>) menuRepository.findAll();
+	}
+	
+	/**
+	 * メニュー情報 アルバイト用
+	 * @return 検索結果
+	 */
+	public List<Menu> partSearchAll() {
+		return (List<Menu>) menuRepository.partSelectMenu();
 	}
 	
 	/**

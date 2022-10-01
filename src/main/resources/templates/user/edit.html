@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div th:replace="common/layout:: header"></div>
-	<div class="container">
+	<div class="container mt-4 mb-4">
 		<!-- エラーが発生した場合、エラーメッセージ出力 -->
 		<div th:if="${validationError}" th:each="error : ${validationError}">
 			<label class="text-danger" th:text="${error}"></label>
@@ -32,25 +32,18 @@
 						<input type="text" class="form-control" th:field="*{name}">
 					</div>
 				</div>
-				<!-- パスワード変更は実装劣後
-        		<div class="row mx-md-n5">
-          			<div class="col-2 pt-3 border bg-light">パスワード</div>
-          			<div class="col py-2 border">
-            			<input type="password" class="form-control">
-          			</div>
-        		</div> -->
 				<div class="row mx-md-n5">
 					<div class="col-2 pt-3 border bg-light">
 						権限<span class="text-danger">※</span>
 					</div>
 					<div class="col py-2 border">
 						<div class="form-check form-check-inline pl-3 pt-2">
-							<input class="form-check-input mr-auto" type="radio" name="authority" value="ROLE_ADMIN">
-							<label class="form-check-label" for="role_admin">管理者</label>
+							<input class="form-check-input mr-auto" type="radio" name="authority" value="ROLE_ADMIN" th:field="*{authority}">
+							<label class="form-check-label" for="role_admin">社員</label>
 						</div>
 						<div class="form-check form-check-inline pl-3 pt-3">
-							<input class="form-check-input mr-auto" type="radio" name="authority" value="ROLE_USER">
-							<label class="form-check-label" for="role_user">一般ユーザー</label>
+							<input class="form-check-input mr-auto" type="radio" name="authority" value="ROLE_USER"  th:field="*{authority}">
+							<label class="form-check-label" for="role_user">アルバイト</label>
 						</div>
 					</div>
 				</div>
