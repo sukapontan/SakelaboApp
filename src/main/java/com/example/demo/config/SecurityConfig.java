@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()  // 認可の設定
-        	.antMatchers("/login", "/error", "/login-error", "/passwordReset", "/passwordResetSeccess").permitAll()
+        	.antMatchers("/login", "/error", "/login-error", "/passwordReset", "/passwordResetSuccess").permitAll()
         	.antMatchers("/admin", "/admin/**").hasAuthority("ROLE_ADMIN") 
             .anyRequest()
             .authenticated();  // それ以外は全て認証無しの場合アクセス不許可

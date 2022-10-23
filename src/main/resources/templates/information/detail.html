@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleafextrasspringsecurity4">
+<head>
+	<meta charset="UTF-8">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<title>インフォメーション詳細画面</title>
+	<script>
+		function alert() {
+			let result = confirm('削除しますか？');
+			if(result) {
+		  		console.log('削除しました');
+		  		return result;
+			} else {
+		  		console.log('削除をとりやめました');
+		  		return result;
+			}
+		}
+	</script>	
+</head>
+<body>
+	<div th:replace="common/layout:: header"></div>
+	
+	<div class="container">
+    	<h1 class="text-center mt-4 mb-4">インフォメーション詳細</h1>
+		<div class="container" th:object="${information}">
+	    	<div class="card mb-3">
+				<div class="card-body">
+				    <h2 class="card-title" th:text="| 【*{title}】|"></h2>
+				    <p class="card-text mt-4 mb-4" style="white-space: pre-wrap" th:text="*{cont}"></p>
+				</div>
+			</div>
+		</div>
+		
+    </div>
+	<div class="text-center mt-4 mb-4">
+		<a href="/information/list" class="btn btn-lg btn-success">一覧画面</a>
+	</div>
+    <div class="text-center mt-4 mb-4">
+    	<a href="/admin" class="btn btn-lg btn-primary mb-4"  sec:authorize="hasRole('ROLE_ADMIN')">ホーム画面</a>
+    	<a href="/part" class="btn btn-lg btn-primary mb-4"  sec:authorize="hasRole('ROLE_USER')">ホーム画面</a>
+    </div>
+
+	<div th:replace="common/layout :: footer"></div>
+
+</body>
+</html>

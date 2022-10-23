@@ -24,10 +24,10 @@ import com.example.demo.service.MenuService;
 public class MenuController {
 
 	@Autowired
-	MenuRepository repository;
+	MenuService menuService;
 	
 	@Autowired
-	MenuService menuService;
+	MenuRepository repository;
 	
 	/**
 	 * メニュー情報一覧画面を表示(社員用)
@@ -66,7 +66,7 @@ public class MenuController {
 	}
 	
 	/**
-	 * メニュー新規登録画面を表示
+	 * メニュー新規登録処理
 	 * 
 	 * @return メニュー新規登録完了画面
 	 */

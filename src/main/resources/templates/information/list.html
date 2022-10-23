@@ -5,46 +5,37 @@
 <head>
 	<meta charset="UTF-8">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-	<title>メニュー編集画面</title>
-	<script>
-		function alert() {
-			let result = confirm('削除しますか？');
-			if(result) {
-		  		console.log('削除しました');
-		  		return result;
-			} else {
-		  		console.log('削除をとりやめました');
-		  		return result;
-			}
-		}
-	</script>	
+	<title>インフォメーション一覧画面</title>
 </head>
 <body>
 	<div th:replace="common/layout:: header"></div>
 	<div class="container">
-    	<h1 class="text-center mt-4 mb-4">料理メニュー一覧</h1>
+    	<h1 class="text-center mt-4 mb-4">インフォメーションー一覧</h1>
     	<div class="float-end"></div>
-    	<a th:href="@{/menu/signup}" class="btn btn-success mt-2 mb-2" sec:authorize="hasRole('ROLE_ADMIN')">新規登録はこちら</a>
+    	<a th:href="@{/information/register}" class="btn btn-success mt-2 mb-2" sec:authorize="hasRole('ROLE_ADMIN')">新規登録はこちら</a>
     	<table class="table table-striped">
-    		<!-- テーブルのヘッダー -->
       		<thead>
         		<tr>
-	          		<th>メニュー名</th>
-	          		<th>メニュー内容</th>
-	          		<th>最終更新日</th>
+	          		<th>タイトル</th>
+	          		<th>作成日時</th>
+	          		<th>作成者</th>
+	          		<th>更新日時</th>
+	          		<th>更新者</th>
 	          		<th>詳細</th>
 	          		<th sec:authorize="hasRole('ROLE_ADMIN')">編集</th>
 	          		<th sec:authorize="hasRole('ROLE_ADMIN')">削除</th>
 	        	</tr>
 	      	</thead>
 	      	<tbody>
-	        	<tr th:each="menu : ${menulist}" th:object="${menu}" class="align-middle">
-		          	<td th:text="*{menu_nm}"></td>
-		          	<td th:text="*{menu_dtl}"></td>
+	        	<tr th:each="information : ${informationlist}" th:object="${information}" class="align-middle">
+		          	<td th:text="*{title}"></td>
+		          	<td th:text="*{ins_date}"></td>
+					<td th:text="*{ins_user}"></td>
 		          	<td th:text="*{upd_date}"></td>
-	          		<td><a th:href="@{/menu/detail/{id}(id=*{menu_id})}" class="btn btn-success">詳細</a></td>
-	          		<td><a th:href="@{/menu/edit/{id}(id=*{menu_id})}" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')">編集</a></td>
-	          		<td><a th:href="@{/menu/delete/{id}(id=*{menu_id})}" class="btn btn-danger" onClick="return alert()" sec:authorize="hasRole('ROLE_ADMIN')">削除</a></td>
+		          	<td th:text="*{upd_user}"></td>
+	          		<td><a th:href="@{/information/detail/{id}(id=*{information_id})}" class="btn btn-success">詳細</a></td>
+	          		<td><a th:href="@{/information/edit/{id}(id=*{information_id})}" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')">編集</a></td>
+	          		<td><a th:href="@{/information/delete/{id}(id=*{information_id})}" class="btn btn-danger" onClick="return alert()" sec:authorize="hasRole('ROLE_ADMIN')">削除</a></td>
 	        	</tr>
 	      	</tbody>
 	    </table>

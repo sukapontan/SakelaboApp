@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<title>インフォメーション編集画面</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div th:replace="common/layout:: header"></div>
+	<div class="container mt-4 mb-4">
+		<h1 class="text-center">インフォメーション編集</h1>
+		
+		<!-- エラーが発生した場合、エラーメッセージ出力 -->
+		<div th:if="${validationError}" th:each="error : ${validationError}">
+			<label class="text-danger" th:text="${error}"></label>
+		</div>
+		
+		<form th:action="@{/information/update}" th:method="post" enctype="multipart/form-data" th:object="${information}">
+			<input type="hidden" name="information_id" th:field="*{information_id}">
+			<div>
+				<div class="row mx-md-n5">
+					<div class="col-2 pt-3 border bg-light">
+						タイトル<span class="text-danger">※</span>
+					</div>
+					<div class="col py-2 border">
+						<input type="text" class="form-control" name="title"  th:field="*{title}">
+					</div>
+				</div>
+				<div class="row mx-md-n5">
+					<div class="col-2 pt-3 border bg-light">
+						お知らせ内容<span class="text-danger">※</span>
+					</div>
+					<div class="col py-2 border">
+						<textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="contl" th:field="*{cont}"></textarea>
+					</div>
+				</div>
+			</div>
+			<br />
+			<input class="btn btn-primary mx-auto d-block" type="submit" value="　変更　">
+		</form>
+	</div>
+	<div class="text-center mt-4 mb-4">
+		<a class="btn btn-secondary" th:href="@{/information/list}">一覧画面</a>
+		<a class="btn btn-success" href="/admin" role="button">ホーム画面</a>
+	</div>
+	<div th:replace="common/layout:: footer"></div>
+</body>
+</html>

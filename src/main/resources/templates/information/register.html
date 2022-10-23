@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<title>インフォメーション新規登録画面</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div th:replace="common/layout:: header"></div>
+	<div class="container mt-4 mb-4">
+		<h1 class="text-center mt-4 mb-4">インフォメーション新規登録</h1>
+	</div>
+	<form th:action="@{/information/register}" th:method="post"	th:object="${information}">
+		<div class="container">
+			<div class="row mx-md-n5">
+				<div class="col-2 pt-3 border bg-light">タイトル<span class="text-danger">※</span></div>
+				<div class="col py-2 border">
+					<input type="text" class="form-control" name="title">
+				</div>
+			</div>
+			<div class="row mx-md-n5">
+				<div class="col-2 pt-3 border bg-light">お知らせ内容<span class="text-danger">※</span></div>
+				<div class="col py-2 border">
+					<textarea class="form-control" id="cont" rows="10" name="cont"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="text-center mt-4 mb-4">
+			<input type="submit" class="btn btn-primary" value="　保存　">
+		</div>
+	</form>
+	<div class="text-center mt-4 mb-4">
+		<input type="button" class="btn btn-primary" onclick="history.back()" value="一覧に戻る">
+	</div>
+	<div th:replace="common/layout :: footer"></div>
+</body>
+</html>
