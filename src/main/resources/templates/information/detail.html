@@ -35,11 +35,11 @@
 		
     </div>
 	<div class="text-center mt-4 mb-4">
-		<a href="/information/list" class="btn btn-lg btn-success">一覧画面</a>
+		<a href="/information/list" class="btn btn-lg btn-secondary">一覧画面へ</a>
 	</div>
     <div class="text-center mt-4 mb-4">
-    	<a href="/admin" class="btn btn-lg btn-primary mb-4"  sec:authorize="hasRole('ROLE_ADMIN')">ホーム画面</a>
-    	<a href="/part" class="btn btn-lg btn-primary mb-4"  sec:authorize="hasRole('ROLE_USER')">ホーム画面</a>
+    	<a href="/admin" class="btn btn-lg btn-primary mb-4"  sec:authorize="hasRole('ROLE_ADMIN')">ホーム画面へ</a>
+    	<a href="/part" class="btn btn-lg btn-primary mb-4"  sec:authorize="hasRole('ROLE_USER')">ホーム画面へ</a>
     </div>
 
 	<div th:replace="common/layout :: footer"></div>
