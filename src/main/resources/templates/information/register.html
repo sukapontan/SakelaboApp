@@ -18,25 +18,33 @@
 	<div class="container mt-4 mb-4">
 		<h1 class="text-center mt-4 mb-4">インフォメーション新規登録</h1>
 	</div>
-	<form th:action="@{/information/register}" th:method="post"	th:object="${information}">
-		<div class="container">
-			<div class="row mx-md-n5">
-				<div class="col-2 pt-3 border bg-light">タイトル<span class="text-danger">※</span></div>
-				<div class="col py-2 border">
-					<input type="text" class="form-control" name="title">
+	
+	<div class="container">
+		<!-- エラーが発生した場合、エラーメッセージ出力 -->
+		<div class="test-center" th:if="${validationError}" th:each="error : ${validationError}">
+			<label class="text-danger" th:text="${error}"></label>
+		</div>
+	
+		<form th:action="@{/information/register}" th:method="post"	th:object="${information}">
+			<div class="container">
+				<div class="row mx-md-n5">
+					<div class="col-2 pt-3 border bg-light">タイトル<span class="text-danger">※</span></div>
+					<div class="col py-2 border">
+						<input type="text" class="form-control" name="title">
+					</div>
+				</div>
+				<div class="row mx-md-n5">
+					<div class="col-2 pt-3 border bg-light">お知らせ内容<span class="text-danger">※</span></div>
+					<div class="col py-2 border">
+						<textarea class="form-control" id="cont" rows="10" name="cont"></textarea>
+					</div>
 				</div>
 			</div>
-			<div class="row mx-md-n5">
-				<div class="col-2 pt-3 border bg-light">お知らせ内容<span class="text-danger">※</span></div>
-				<div class="col py-2 border">
-					<textarea class="form-control" id="cont" rows="10" name="cont"></textarea>
-				</div>
+			<div class="text-center mt-4 mb-4">
+				<input type="submit" class="btn btn-primary" value="　保存　">
 			</div>
-		</div>
-		<div class="text-center mt-4 mb-4">
-			<input type="submit" class="btn btn-primary" value="　保存　">
-		</div>
-	</form>
+		</form>
+	</div>
 	<div class="text-center mt-4 mb-4">
 		<input type="button" class="btn btn-primary" onclick="history.back()" value="一覧に戻る">
 	</div>

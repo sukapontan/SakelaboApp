@@ -70,6 +70,7 @@ public class InformationController {
 			model.addAttribute("validationError", errorList);
 			return "information/register";
 		}
+		
 		informationService.register(information, userDetails);
 		return "redirect:/information/list";
 	}
@@ -106,7 +107,17 @@ public class InformationController {
 	 * @return インフォメーション一覧画面
 	*/
 	@PostMapping(value = "/information/update")
-	public String menuUpdate(Model model, Information information, @AuthenticationPrincipal UserDetails userDetails) {
+	public String menuUpdate(@Validated Information information, BindingResult result, Model model, @AuthenticationPrincipal UserDetails userDetails) {
+		
+		if (result.hasErrors()) {
+			List<String> errorList = new ArrayList<String>();
+			for (ObjectError error : result.getAllErrors()) {
+				errorList.add(error.getDefaultMessage());
+			}
+			model.addAttribute("validationError", errorList);
+			return "information/edit";
+		}
+		
 		// 受け取ったIDをもとにメニュー情報を更新
 		Information updateInformation = informationService.updateInformation(information, userDetails);
 		model.addAttribute("updateInformation", updateInformation);

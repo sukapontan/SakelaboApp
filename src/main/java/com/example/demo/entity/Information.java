@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,14 +36,14 @@ public class Information {
 	 * タイトル
 	 */
 	@Column(name = "title")	 
-	@NotNull(message = "タイトルは必須です")
+	@NotEmpty(message = "タイトルは必須です")
 	private String title;
 	
 	/**
 	 * お知らせ内容
 	 */
 	@Column(name = "cont")
-	@NotNull(message = "お知らせ内容は必須です")
+	@NotEmpty(message = "お知らせ内容は必須です")
 	private String cont;
 	
 	/**
