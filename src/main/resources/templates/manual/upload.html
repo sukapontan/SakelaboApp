@@ -6,7 +6,7 @@
 	<title>各種マニュアルアップロード画面</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
-<body>
+<body class="mb-6">
 	<div th:replace="common/layout:: header"></div>
     
     <div class="container mt-4 mb-4 text-center">
@@ -25,11 +25,11 @@
 					</div>
 					<div class="card-body d-flex flex-column">
 	        			<form th:action="@{/admin/workManual/upload}" method="post" enctype="multipart/form-data" th:object="${uploadForm}">
-	            			<p class="text-danger">ファイル名は<strong>workManual.pdf</strong>に編集してアップロードして下さい！</p>
+	            			<h4 class="text-danger">ファイル名は<strong>workManual.pdf</strong>に編集してアップロードして下さい！</h4>
+	            			<a href="/images/manual/workManual.pdf" target="_blank" rel="noreferrer noopener">現在のマニュアルを確認する</a>
 	            			<div class="mt-2 mb-2">
 	                			<input type="file" th:field="*{multipartFile}" accept=".pdf">
 	            			</div>
-	            			<a href="/images/manual/workManual.pdf" target="_blank" rel="noreferrer noopener">現在のマニュアルを確認する</a>
 	            			<div class="mt-2 mb-2">
 	                			<input class="btn btn-primary btn-lg" type="submit" value="アップロード">
 	            			</div>
@@ -45,16 +45,18 @@
 					<div class="card-header">
 				        <h3 class="mt-4 mb-4">電話対応マニュアルアップロード</h3>
 				    </div>
-				    <form th:action="@{/admin/telephoneManual/upload}" method="post" enctype="multipart/form-data" th:object="${uploadForm}">
-				        <p class="text-danger">ファイル名は<strong>telephoneManual.pdf</strong>に編集してアップロードして下さい！</p>
-				        <div class="mt-2 mb-2">
-				            <input type="file" th:field="*{multipartFile}" accept=".pdf">
-				        </div>
-				        <a href="/images/manual/telephoneManual.pdf" target="_blank" rel="noreferrer noopener">現在のマニュアルを確認する</a>
-				        <div class="mt-2 mb-2">
-				            <input class="btn btn-primary btn-lg" type="submit" value="アップロード">
-				        </div>
-				    </form>
+				    <div class="card-body d-flex flex-column">
+					    <form th:action="@{/admin/telephoneManual/upload}" method="post" enctype="multipart/form-data" th:object="${uploadForm}">
+					        <h4 class="text-danger">ファイル名は<strong>telephoneManual.pdf</strong>に編集してアップロードして下さい！</h4>
+					        <a href="/images/manual/telephoneManual.pdf" target="_blank" rel="noreferrer noopener">現在のマニュアルを確認する</a>
+					        <div class="mt-2 mb-2">
+					            <input type="file" th:field="*{multipartFile}" accept=".pdf">
+				    	    </div>
+				        	<div class="mt-2 mb-2">
+					            <input class="btn btn-primary btn-lg" type="submit" value="アップロード">
+					        </div>
+					    </form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -65,23 +67,25 @@
 					<div class="card-header">
 			        	<h3 class="mt-4 mb-4">お会計マニュアルアップロード</h3>
 			        </div>
-			        <form th:action="@{/admin/billManual/upload}" method="post" enctype="multipart/form-data" th:object="${uploadForm}">
-			            <p class="text-danger">ファイル名は<strong>billManual.pdf</strong>に編集してアップロードして下さい！</p>
-			            <div class="mt-2 mb-2">
-			                <input type="file" th:field="*{multipartFile}" accept=".pdf">
-			            </div>
-			            <a href="/images/manual/billManual.pdf" target="_blank" rel="noreferrer noopener">現在のマニュアルを確認する</a>
-			            <div class="mt-2 mb-2">
-			                <input class="btn btn-primary btn-lg" type="submit" value="アップロード">
-			            </div>
-			        </form>
+			        <div class="card-body d-flex flex-column">
+				        <form th:action="@{/admin/billManual/upload}" method="post" enctype="multipart/form-data" th:object="${uploadForm}">
+				           <h4 class="text-danger">ファイル名は<strong>billManual.pdf</strong>に編集してアップロードして下さい！</h4>
+				            <a href="/images/manual/billManual.pdf" target="_blank" rel="noreferrer noopener">現在のマニュアルを確認する</a>
+				            <div class="mt-2 mb-2">
+				                <input type="file" th:field="*{multipartFile}" accept=".pdf">
+				            </div>
+				            <div class="mt-2 mb-2">
+				                <input class="btn btn-primary btn-lg" type="submit" value="アップロード">
+				            </div>
+				        </form>
+			        </div>
 			    </div>
 			</div>
 		</div>
 			        
-        <div class="text-center mt-4 mb-4">
-        	<a class="btn btn-success btn-lg" href="/admin" role="button">ホーム画面へ戻る</a>
-        </div>
+       	<div class="text-center mt-4 mb-5">
+       		<a class="btn btn-success btn-lg mb-4" href="/admin" role="button">ホーム画面へ戻る</a>
+       	</div>
     </div>
  
     <div th:replace="common/layout :: footer"></div>

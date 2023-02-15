@@ -21,7 +21,8 @@
 </head>
 <body>
 	<div th:replace="common/layout:: header"></div>
-	<div class="container">
+	
+	<div class="container mb-5">
     	<h1 class="text-center mt-4 mb-4">料理メニュー一覧</h1>
     	<div class="float-end"></div>
     	<a th:href="@{/menu/signup}" class="btn btn-success mt-2 mb-2" sec:authorize="hasRole('ROLE_ADMIN')">新規登録はこちら</a>
@@ -30,8 +31,10 @@
       		<thead>
         		<tr>
 	          		<th>メニュー名</th>
-	          		<th>メニュー内容</th>
-	          		<th>最終更新日</th>
+	          		<th>作成日</th>
+	          		<th>作成者</th>
+	          		<th>更新日</th>
+	          		<th>更新者</th>
 	          		<th>詳細</th>
 	          		<th sec:authorize="hasRole('ROLE_ADMIN')">編集</th>
 	          		<th sec:authorize="hasRole('ROLE_ADMIN')">削除</th>
@@ -40,19 +43,22 @@
 	      	<tbody>
 	        	<tr th:each="menu : ${menulist}" th:object="${menu}" class="align-middle">
 		          	<td th:text="*{menu_nm}"></td>
-		          	<td th:text="*{menu_dtl}"></td>
-		          	<td th:text="*{upd_date}"></td>
+		          	<td th:text="*{#temporals.format(ins_date,'yyyy/MM/dd HH:mm')}"></td>
+		          	<td th:text="*{ins_user}"></td>
+		          	<td th:text="*{#temporals.format(upd_date,'yyyy/MM/dd HH:mm')}"></td>
+		          	<td th:text="*{upd_user}"></td>
 	          		<td><a th:href="@{/menu/detail/{id}(id=*{menu_id})}" class="btn btn-success">詳細</a></td>
 	          		<td><a th:href="@{/menu/edit/{id}(id=*{menu_id})}" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')">編集</a></td>
 	          		<td><a th:href="@{/menu/delete/{id}(id=*{menu_id})}" class="btn btn-danger" onClick="return alert()" sec:authorize="hasRole('ROLE_ADMIN')">削除</a></td>
 	        	</tr>
 	      	</tbody>
 	    </table>
-    	<div class="text-center">
+    	<div class="text-center mt-2 mb-5">
     		<a href="/admin" class="btn btn-primary mb-4"  sec:authorize="hasRole('ROLE_ADMIN')">ホーム画面に戻る</a>
     		<a href="/part" class="btn btn-primary mb-4"  sec:authorize="hasRole('ROLE_USER')">ホーム画面に戻る</a>
     	</div>
   	</div>
+  	
 	<div th:replace="common/layout :: footer"></div>
 </body>
 </html>

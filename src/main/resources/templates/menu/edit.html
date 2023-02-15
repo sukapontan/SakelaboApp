@@ -15,8 +15,8 @@
 </head>
 <body>
 	<div th:replace="common/layout:: header"></div>
-	<div class="container mt-4 mb-4">
-		<h1 class="text-center">料理メニュー編集</h1>
+	<div class="container mt-4 mb-5">
+		<h1 class="text-center mb-4">料理メニュー編集</h1>
 		
 		<!-- エラーが発生した場合、エラーメッセージ出力 -->
 		<div th:if="${validationError}" th:each="error : ${validationError}">
@@ -108,10 +108,11 @@
 			<br />
 			<input class="btn btn-primary mx-auto d-block" type="submit" value="　変更　">
 		</form>
-	</div>
-	<div class="text-center mt-4 mb-4">
-		<a class="btn btn-secondary" th:href="@{/menu/list}">一覧に戻る</a>
-		<a class="btn btn-success" href="/admin" role="button">ホーム画面へ戻る</a>
+	
+		<div class="text-center mt-2">
+			<a class="btn btn-secondary mb-5" th:href="@{/menu/list}">　一覧に戻る　</a>
+			<a class="btn btn-success mb-5" href="/admin" role="button">ホーム画面へ戻る</a>
+		</div>
 	</div>
 	<div th:replace="common/layout:: footer"></div>
 </body>

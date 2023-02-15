@@ -19,31 +19,33 @@
 </head>
 <body>
 	<div th:replace="common/layout :: header"></div>
-	<div class="container">
-    <h1 class="text-center mt-2 mb-2">ユーザー情報一覧</h1>
-    <a th:href="@{/user/signup}" class="btn btn-success mt-2 mb-2">新規登録はこちら</a>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>名前</th>
-          <th>権限</th>
-          <th>編集</th>
-          <th>削除</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="user : ${userlist}" th:object="${user}" class="align-middle">
-          <td th:text="*{name}"></td>
-          <td th:text="*{authority.equals('ROLE_ADMIN')} ? 社員 : アルバイト"></td>
-          <td><a th:href="@{/user/edit/{id}(id=*{id})}" class="btn btn-primary">編集</a></td>
-          <td><a th:href="@{/user/delete/{id}(id=*{id})}" class="btn btn-danger" onClick="return alert()">削除</a></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="text-center mt-4 mb-4">
-    	<a href="/admin" class="btn btn-primary">ホーム画面に戻る</a>
-    </div>
-  </div>
-  <div th:replace="common/layout :: footer"></div>
+	
+	<div class="container mb-5">
+    	<h1 class="text-center mt-4 mb-4">ユーザー情報一覧</h1>
+    	<a th:href="@{/user/signup}" class="btn btn-success mt-2 mb-2">新規登録はこちら</a>
+    	<table class="table table-striped">
+      		<thead>
+        		<tr>
+          			<th>名前</th>
+          			<th>権限</th>
+          			<th>編集</th>
+          			<th>削除</th>
+        		</tr>
+      		</thead>
+      		<tbody>
+	        	<tr th:each="user : ${userlist}" th:object="${user}" class="align-middle">
+			        <td th:text="*{name}"></td>
+	          		<td th:text="*{authority.equals('ROLE_ADMIN')} ? 社員 : アルバイト"></td>
+	          		<td><a th:href="@{/user/edit/{id}(id=*{id})}" class="btn btn-primary">編集</a></td>
+	          		<td><a th:href="@{/user/delete/{id}(id=*{id})}" class="btn btn-danger" onClick="return alert()">削除</a></td>
+	        	</tr>
+      		</tbody>
+    	</table>
+    	<div class="text-center mt-4 mb-5">
+    		<a href="/admin" class="btn btn-primary mb-4">ホーム画面に戻る</a>
+    	</div>
+  	</div>
+  
+  	<div th:replace="common/layout :: footer"></div>
 </body>
 </html>

@@ -33,7 +33,7 @@ public class MenuController {
 	 * メニュー情報一覧画面を表示(社員用)
 	 * 
 	 * @param model Model
-	 * @return メニュー情報一覧画面
+	 * @return メニュー一覧画面
 	 */
 	@GetMapping(value = "/menu/list")
 	public String menuList(Model model) {
@@ -46,7 +46,7 @@ public class MenuController {
 	 * メニュー情報一覧画面を表示(アルバイト用)
 	 * 
 	 * @param model Model
-	 * @return メニュー情報一覧画面
+	 * @return メニュー一覧画面
 	 */
 	@GetMapping(value = "/part/menu/list")
 	public String partMenuList(Model model) {
@@ -68,7 +68,7 @@ public class MenuController {
 	/**
 	 * メニュー新規登録処理
 	 * 
-	 * @return メニュー新規登録完了画面
+	 * @return メニュー一覧画面
 	 */
 	@PostMapping(value = "/menu/signup")
 	public String menuRegister(@Validated  Menu menu, BindingResult result, Model model, @AuthenticationPrincipal UserDetails userDetails) {
@@ -82,7 +82,8 @@ public class MenuController {
             return "menu/signup";
         }
 		menuService.signup(menu, userDetails);
-		return "menu/registerSuccess";
+//		return "menu/registerSuccess";
+		return "redirect:/menu/list";
 	}
 	
 	/**
@@ -108,34 +109,37 @@ public class MenuController {
 		// 受け取ったIDのメニュー詳細情報を取得
 		Optional<Menu> menu = repository.findById(id);
 		model.addAttribute("menu", menu.get());
-//		System.out.println(menu);
-//		System.out.println(menu.get());
+
 		return "menu/detail";
 	}	
 	
 	/**
 	 * メニュー情報更新処理
 	 * @param model Model
-	 * @return メニュー情報更新完了画面
+	 * @return メニュー一覧画面
 	*/
 	@PostMapping(value = "/menu/update")
 	public String menuUpdate(Model model, Menu menu, @AuthenticationPrincipal UserDetails userDetails) {
+		
 		// 受け取ったIDをもとにメニュー情報を更新
 		Menu updateMenu = menuService.updateMenu(menu, userDetails);
 		model.addAttribute("updateMenu", updateMenu);
-		return "menu/updateSuccess";
+
+		return "redirect:/menu/list";
 	}
 	
 	/**
 	 * メニュー情報削除
 	 * @param id 
-	 * @return メニュー情報削除完了画面
+	 * @return メニュー一覧画面
 	*/
 	@GetMapping(value = "/menu/delete/{id}")
 	public String menuDelete(@PathVariable Long id) {
+		
 		// 受け取ったIDをもとにユーザー情報を削除
 		menuService.deleteUser(id);
-		return "menu/deleteSuccess";
+		
+		return "redirect:/menu/list";
 	}
 
 }

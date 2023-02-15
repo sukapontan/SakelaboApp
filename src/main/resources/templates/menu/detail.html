@@ -22,10 +22,10 @@
 <body>
 	<div th:replace="common/layout:: header"></div>
 	
-	<div class="container">
+	<div class="container mb-5">
     	<h1 class="text-center mt-4 mb-4">料理メニュー詳細</h1>
     	<!-- サンプル1 -->
-		<div class="text-center" th:object="${menu}">
+		<div class="text-left" th:object="${menu}">
 	    	<div class="card mb-3">
 				<!-- ↓ここに画像の情報を記載 -->
 				<img src="..." class="card-img-top" alt="...">
@@ -48,13 +48,14 @@
 			</div>
 		</div>
 		
-    </div>
-	<div class="text-center mt-4 mb-4">
-		<a href="/menu/list" class="btn btn-lg btn-success">メニュー一覧に戻る</a>
-	</div>
-    <div class="text-center mt-4 mb-4">
-    	<a href="/admin" class="btn btn-primary mb-4"  sec:authorize="hasRole('ROLE_ADMIN')">ホーム画面に戻る</a>
-    	<a href="/part" class="btn btn-primary mb-4"  sec:authorize="hasRole('ROLE_USER')">ホーム画面に戻る</a>
+    
+		<div class="text-center mt-4 mb-4">
+			<a href="/menu/list" class="btn btn-lg btn-success">メニュー一覧に戻る</a>
+		</div>
+	    <div class="text-center mt-4 mb-4">
+	    	<a href="/admin" class="btn btn-lg btn-primary mb-4"  sec:authorize="hasRole('ROLE_ADMIN')">ホーム画面に戻る</a>
+	    	<a href="/part" class="btn btn-lg btn-primary mb-4"  sec:authorize="hasRole('ROLE_USER')">ホーム画面に戻る</a>
+	    </div>
     </div>
 
 	<div th:replace="common/layout :: footer"></div>

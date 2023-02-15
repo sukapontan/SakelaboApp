@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -26,9 +29,11 @@ public class Menu implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	/* コースーテーブル削除予定のため、コメントアウト
 	@ManyToOne
 	@JoinColumn(name="menu_id", insertable = false, updatable = false)
 	private Menu menu;
+	*/
 	
 	/**
 	 * メニューID
@@ -41,22 +46,22 @@ public class Menu implements Serializable {
 	 * メニュー名
 	 */
 	@Column(name = "menu_nm")
-	@NotNull(message = "メニュー名は必須です")
+	@NotEmpty(message = "メニュー名は必須です")
 	private String menu_nm;
 	
 	/**
 	 * メニュー詳細
 	 */
 	@Column(name = "menu_dtl")
-	@NotNull
+	@NotEmpty(message = "メニュー詳細は必須です")
 	private String menu_dtl;
 	
 	/**
 	 * 価格
 	 */
 	@Column(name = "price")
-	@NotNull(message = "価格は0円以上で設定してください")
-	@Positive // 数値が正であることを検証する。
+	@NotNull
+	@Positive(message = "価格は0より大きい金額で設定してください") // 数値が正であることを検証する。
 	private int price;
 
 	/**
@@ -77,7 +82,8 @@ public class Menu implements Serializable {
 	 * 
 	 */
 	@Column(name = "ins_date")
-	private String ins_date;
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+	private LocalDateTime ins_date;
 	
 	/**
 	 * 作成者
@@ -90,7 +96,8 @@ public class Menu implements Serializable {
 	 * 更新日
 	 */
 	@Column(name = "upd_date")
-	private String upd_date;
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+	private LocalDateTime upd_date;
 	
 	/**
 	 * 更新者
@@ -172,19 +179,19 @@ public class Menu implements Serializable {
 		this.price = price;
 	}
 
-	public String getIns_date() {
+	public LocalDateTime getIns_date() {
 		return ins_date;
 	}
 
-	public void setIns_date(String ins_date) {
+	public void setIns_date(LocalDateTime ins_date) {
 		this.ins_date = ins_date;
 	}
 
-	public String getUpd_date() {
+	public LocalDateTime getUpd_date() {
 		return upd_date;
 	}
 
-	public void setUpd_date(String upd_date) {
+	public void setUpd_date(LocalDateTime upd_date) {
 		this.upd_date = upd_date;
 	}
 

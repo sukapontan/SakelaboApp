@@ -10,27 +10,27 @@
 	<div th:replace="common/layout:: header"></div>
     
     <div class="container mt-4 mb-4 text-center">
-     	<h2 class="text-center mt-4 mb-4">日本酒メニュー編集</h2>
-     	
-     	<!-- アップロードが成功した場合 -->
+     	<h2 class="text-center mt-4">日本酒メニュー編集</h2>
+     	     	
+     	<!-- アップロードが成功した場合-->
      	<label class="text-primary" th:if="${result eq ('OK')}" th:text="${message}"></label><br>
 		<!-- アップロードが失敗した場合 -->
 		<label class="text-danger" th:if="${result eq ('NG')}" th:text="${message}"></label><br>
 		
-		<a href="/images/sake/sakeMenu.jpg" target="_blank" rel="noreferrer noopener">現在の日本酒メニュー画像を確認する</a>
+		<a class="btn btn-primary mt-4 mb-4" href="/images/sake/sakeMenu.jpg" target="_blank" rel="noreferrer noopener">現在の日本酒メニュー画像を確認する</a>
 		
         <!-- /* 「enctype="multipart/form-data"」でアップロードファイルをコントローラークラスに渡す */ -->
         <form th:action="@{/admin/sake/upload}" method="post" enctype="multipart/form-data" th:object="${uploadForm}">
+            <div class="mt-4 mb-4">
+                <input type="file" th:field="*{multipartFile}" accept="image/*">
+            </div>
             <div class="text-danger">
             	<p>ファイル名は<strong>sakeMenu</strong>に編集してアップロードして下さい！</p>
             	<p>例）sakeMenu.jgp, sakeMenu.png</p>
             </div>
-            <div class="mt-2 mb-2">
-                <input type="file" th:field="*{multipartFile}" accept="image/*">
-            </div>
             <!-- 現在アップロードされている画像を表示 ※画像の更新がタイムリーでないため、考慮が必要 -->
             <!-- <img class="img-thumbnail" width="300" height="300" th:src="@{/images/sake/sakeMenu.jpg}"> -->
-            <div class="mt-2 mb-2">
+            <div class="mt-4 mb-4">
                 <input class="btn btn-primary btn-lg" type="submit" value="アップロード">
             </div>
         </form>
