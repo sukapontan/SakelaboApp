@@ -8,26 +8,26 @@
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
 </head>
 <body>
-<div class="container">
-    <h2 class="heading" style="text-align: center;">ログイン画面</h2>
-    <form class="form-signin" method="post" th:action="@{/login}">
-        <div class="text-danger  mt-2 mb-2" style="text-align:center;" th:if="${param.error}">
-            ログインに失敗しました
-            <div th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null}">
-                <span th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}"></span>
-            </div>
-        </div>
-        <div class="text-danger mt-2 mb-2" style="text-align:center;"th:if="${param.logout}">
-            ログアウトしました
-        </div>
-        <input type="text" id="username" name="username" class="form-control" placeholder="ユーザー名" required autofocus ><br>
-        <input type="password" id="password" name="password" class="form-control" placeholder="パスワード" required ><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button><br>
-        <div class="container" style="text-align: center; font-weight: bold;">
-        	<a href="/passwordReset" style="border-bottom: solid #767B9E 1px;cursor: pointer">パスワードをお忘れですか？</a>
-        </div>
-    </form>
-</div>
+	<div class="container text-center">
+	    <h2 class="heading" style="text-align: center;">ログイン画面</h2>
+	    <form class="form-signin" method="post" th:action="@{/login}">
+	        <div class="text-danger  mt-2 mb-2" style="text-align:center;" th:if="${param.error}">
+	            ログインに失敗しました
+	            <div th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null}">
+	                <span th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}"></span>
+	            </div>
+	        </div>
+	        <div class="text-danger mt-2 mb-2" style="text-align:center;"th:if="${param.logout}">
+	            ログアウトしました
+	        </div>
+	        <input type="text" id="username" name="username" class="form-control" placeholder="ユーザー名" required autofocus ><br>
+	        <input type="password" id="password" name="password" class="form-control" placeholder="パスワード" required ><br>
+	        <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button><br>
+	        <div class="container" style="text-align: center; font-weight: bold;">
+	        	<a href="/passwordReset" style="border-bottom: solid #767B9E 1px;cursor: pointer">パスワードをお忘れですか？</a>
+	        </div>
+	    </form>
+	</div>
 </body>
 </html>
 
