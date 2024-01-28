@@ -1,5 +1,9 @@
 package com.example.demo.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,8 +19,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.Menu;
+import com.example.demo.form.MenuForm;
 import com.example.demo.repository.MenuRepository;
 import com.example.demo.service.MenuService;
 
@@ -61,17 +67,19 @@ public class MenuController {
 	 * @return メニュー新規登録画面
 	 */
 	@GetMapping(value = "/menu/signup")
-	public String menuSingup(Menu menu) {
+	public String menuSingup(MenuForm menuForm) {
 		return "menu/signup";
 	}
 	
 	/**
 	 * メニュー新規登録処理
 	 * 
-	 * @return メニュー一覧画面
+	 * @return 
+	 * 成功：メニュー一覧画面
+	 * 失敗：メニュー登録画面
 	 */
 	@PostMapping(value = "/menu/signup")
-	public String menuRegister(@Validated  Menu menu, BindingResult result, Model model, @AuthenticationPrincipal UserDetails userDetails) {
+	public String menuRegister(@Validated MenuForm menuForm, BindingResult result, Model model, MultipartFile menuImg, @AuthenticationPrincipal UserDetails userDetails) {
 		
 		if (result.hasErrors()) {
 			List<String> errorList = new ArrayList<String>();
@@ -81,6 +89,34 @@ public class MenuController {
             model.addAttribute("validationError", errorList);
             return "menu/signup";
         }
+		
+		// 保存先を定義
+		String fileName = menuImg.getOriginalFilename();
+		String uploadPath = "src/main/resources/static/images/menu/" + fileName;
+		
+		try {
+			// アップロードファイルをバイト値に変換
+			byte[] bytes = menuForm.getMenuImg().getBytes();
+
+			// バイト値を書き込むためのファイルを作成して指定したパスに格納
+			BufferedOutputStream stream = new BufferedOutputStream (new FileOutputStream(new File(uploadPath)));
+			// ファイルに書き込み
+			stream.write(bytes);
+		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		
+		//　FormからEntityに情報を入れ替え
+		Menu menu = new Menu();
+		menu.setMenu_nm(menuForm.getMenu_nm());
+		menu.setMenuImg(uploadPath.replace("src/main/resources/static", ""));
+		menu.setPrice(menuForm.getPrice());
+		menu.setMenu_dtl(menuForm.getMenu_dtl());
+		menu.setGenre(menuForm.getGenre());
+		menu.setNote(menuForm.getNote());
+		
+		// DBにデータを登録
 		menuService.signup(menu, userDetails);
 //		return "menu/registerSuccess";
 		return "redirect:/menu/list";
@@ -119,7 +155,36 @@ public class MenuController {
 	 * @return メニュー一覧画面
 	*/
 	@PostMapping(value = "/menu/update")
-	public String menuUpdate(Model model, Menu menu, @AuthenticationPrincipal UserDetails userDetails) {
+	public String menuUpdate(Model model, MenuForm menuForm, MultipartFile menuImg, @AuthenticationPrincipal UserDetails userDetails) {
+		
+		// 保存先を定義
+		String fileName = menuImg.getOriginalFilename();
+		String uploadPath = "src/main/resources/static/images/menu/" + fileName;
+		System.out.println(fileName);
+		System.out.println(uploadPath);
+				
+		try {
+			// アップロードファイルをバイト値に変換
+			byte[] bytes = menuForm.getMenuImg().getBytes();
+
+			// バイト値を書き込むためのファイルを作成して指定したパスに格納
+			BufferedOutputStream stream = new BufferedOutputStream (new FileOutputStream(new File(uploadPath)));
+			// ファイルに書き込み
+			stream.write(bytes);
+		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		
+		//　FormからEntityに情報を入れ替え
+		Menu menu = new Menu();
+		menu.setMenu_id(menuForm.getMenu_id());
+		menu.setMenu_nm(menuForm.getMenu_nm());
+		menu.setMenuImg(uploadPath.replace("src/main/resources/static", ""));
+		menu.setPrice(menuForm.getPrice());
+		menu.setMenu_dtl(menuForm.getMenu_dtl());
+		menu.setGenre(menuForm.getGenre());
+		menu.setNote(menuForm.getNote());
 		
 		// 受け取ったIDをもとにメニュー情報を更新
 		Menu updateMenu = menuService.updateMenu(menu, userDetails);

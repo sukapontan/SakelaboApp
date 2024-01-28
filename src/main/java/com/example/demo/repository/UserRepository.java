@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.app.PasswordResetForm;
 import com.example.demo.entity.User;
+import com.example.demo.form.PasswordResetForm;
 
 /**
  * ユーザー情報 Repository

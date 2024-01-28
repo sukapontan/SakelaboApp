@@ -1,14 +1,10 @@
-package com.example.demo.entity;
+package com.example.demo.form;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -16,17 +12,10 @@ import javax.validation.constraints.Positive;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-import lombok.Data;
-
 /**
- * メニュー情報 Entity
+ * メニュー情報 Form
  */
-@Entity
-@Data
-@Table(name = "menus")
-public class Menu implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+public class MenuForm {
 	
 	/**
 	 * メニューID
@@ -34,32 +23,27 @@ public class Menu implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long menu_id;
-	
+
 	/**
 	 * メニュー名
 	 */
-	@Column(name = "menu_nm")
 	@NotEmpty(message = "メニュー名は必須です")
 	private String menu_nm;
 	
 	/**
-	 * メニュー画像情報
+	 * メニュー画像
 	 */
-	@Column(name = "menuImg")
-	private String  menuImg;	
-	
+	private MultipartFile menuImg;
 	
 	/**
 	 * メニュー詳細
 	 */
-	@Column(name = "menu_dtl")
 	@NotEmpty(message = "メニュー詳細は必須です")
 	private String menu_dtl;
-
+	
 	/**
 	 * 価格
 	 */
-	@Column(name = "price")
 	@NotNull
 	@Positive(message = "価格は0より大きい金額で設定してください") // 数値が正であることを検証する。
 	private int price;
@@ -67,21 +51,18 @@ public class Menu implements Serializable {
 	/**
 	 * メニュー種別
 	 */
-	@Column(name = "genre")
 	@NotNull(message = "メニュー区分を選択してください")
 	private String genre;
 	
 	/**
 	 * 備考
 	 */
-	@Column(name = "note")
 	private String note;
 	
 	/**
 	 * 作成日
 	 * 
 	 */
-	@Column(name = "ins_date")
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	private LocalDateTime ins_date;
 	
@@ -89,30 +70,26 @@ public class Menu implements Serializable {
 	 * 作成者
 	 * 
 	 */
-	@Column(name = "ins_user")
 	private String ins_user;
 	
 	/**
 	 * 更新日
 	 */
-	@Column(name = "upd_date")
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	private LocalDateTime upd_date;
 	
 	/**
 	 * 更新者
 	 */
-	@Column(name = "upd_user")
 	private String upd_user;
 	
-	/**
-	 * 削除フラグ
-	 */
-	@Column(name = "del_flag")
-	private String del_flag;
-		
+
 	public Long getMenu_id() {
 		return menu_id;
+	}
+
+	public void setMenu_id(Long menu_id) {
+		this.menu_id = menu_id;
 	}
 
 	public String getGenre() {
@@ -147,14 +124,6 @@ public class Menu implements Serializable {
 		this.upd_user = upd_user;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public void setMenu_id(Long menu_id) {
-		this.menu_id = menu_id;
-	}
-
 	public String getMenu_nm() {
 		return menu_nm;
 	}
@@ -163,12 +132,12 @@ public class Menu implements Serializable {
 		this.menu_nm = menu_nm;
 	}
 	
-	public String getMenuImg() {
+	public MultipartFile getMenuImg() {
 		return menuImg;
 	}
 
-	public void setMenuImg(String menu_img) {
-		this.menuImg = menu_img;
+	public void setMenuImg(MultipartFile menuImg) {
+		this.menuImg = menuImg;
 	}
 
 	public String getMenu_dtl() {
@@ -202,13 +171,4 @@ public class Menu implements Serializable {
 	public void setUpd_date(LocalDateTime upd_date) {
 		this.upd_date = upd_date;
 	}
-
-	public String getDel_flag() {
-		return del_flag;
-	}
-
-	public void setDel_flag(String del_flag) {
-		this.del_flag = del_flag;
-	}
-
 }

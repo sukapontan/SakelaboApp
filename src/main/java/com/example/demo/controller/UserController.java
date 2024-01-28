@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.app.PasswordResetForm;
-import com.example.demo.app.SignupForm;
 import com.example.demo.entity.User;
+import com.example.demo.form.PasswordResetForm;
+import com.example.demo.form.SignupForm;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserDetailServiceImpl;
 import com.example.demo.service.UserService;

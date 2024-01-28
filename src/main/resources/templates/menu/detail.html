@@ -6,48 +6,35 @@
 	<meta charset="UTF-8">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 	<title>メニュー詳細画面</title>
-	<script>
-		function alert() {
-			let result = confirm('削除しますか？');
-			if(result) {
-		  		console.log('削除しました');
-		  		return result;
-			} else {
-		  		console.log('削除をとりやめました');
-		  		return result;
-			}
-		}
-	</script>	
 </head>
 <body>
 	<div th:replace="common/layout:: header"></div>
 	
 	<div class="container mb-5">
-    	<h1 class="text-center mt-4 mb-4">料理メニュー詳細</h1>
-    	<!-- サンプル1 -->
-		<div class="text-left" th:object="${menu}">
-	    	<div class="card mb-3">
-				<!-- ↓ここに画像の情報を記載 -->
-				<img src="..." class="card-img-top" alt="...">
-				<div class="card-body">
-				    <h2 class="card-title" th:text="*{menu_nm}"></h2>
-				    <p class="card-text" th:text="|【メニュー詳細】*{menu_dtl}|"></p>
-					<p class="card-text" th:text="|【価格】*{price}円|"></p>
-					<th:block th:switch="*{genre}">
-						<p class="" th:case="1" th:text="【メニュー区分】汁物メニュー"></p>
-						<p class="card-text" th:case="2" th:text="【メニュー区分】刺物メニュー"></p>
-						<p class="card-text" th:case="3" th:text="【メニュー区分】お酒のお供"></p>
-						<p class="card-text" th:case="4" th:text="【メニュー区分】出汁メニュー"></p>
-						<p class="card-text" th:case="5" th:text="【メニュー区分】焼物メニュー"></p>
-						<p class="card-text" th:case="6" th:text="【メニュー区分】揚物メニュー"></p>
-						<p class="card-text" th:case="7" th:text="【メニュー区分】煮物メニュー"></p>
-						<p class="card-text" th:case="8" th:text="【メニュー区分】〆のお料理"></p>
-					</th:block>
-					<p class="card-text" th:text="|【備考】*{note}|"></p>
-				</div>
-			</div>
+    	<h1 class="text-center mt-4 mb-4">料理メニュー詳細</h1>		
+		<div class="text-center" th:object="${menu}">
+	    	<h2 th:text="|【*{menu_nm}　】|"></h2>
+			<img class="mt-4 mb-4 text-align:center" th:src="@{*{menuImg}}" width="318px" height="180px">
+			<h4>【メニュー詳細】</h4>
+			<p th:text="*{menu_dtl}"></p>
+			<h4>【価格】</h4>
+			<p th:text="|*{price}円|"></p>
+			<h4>【メニュー区分】</h4>
+			<th:block th:switch="*{genre}">
+				<p th:case="1" th:text="汁物メニュー"></p>
+				<p th:case="2" th:text="刺物メニュー"></p>
+				<p th:case="3" th:text="供メニュー"></p>
+				<p th:case="4" th:text="出汁メニュー"></p>
+				<p th:case="5" th:text="焼物メニュー"></p>
+				<p th:case="6" th:text="揚物メニュー"></p>
+				<p th:case="7" th:text="煮物メニュー"></p>
+				<p th:case="8" th:text="〆のお料理"></p>
+			</th:block>
+			<th:block th:if="*{note != ''}">
+				<h4>【備考】</h4>
+				<p th:text="*{note}"></p>
+			</th:block>
 		</div>
-		
     
 		<div class="text-center mt-4 mb-4">
 			<a href="/menu/list" class="btn btn-lg btn-success">メニュー一覧に戻る</a>

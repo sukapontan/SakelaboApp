@@ -26,14 +26,14 @@
 		<form th:action="@{/menu/update}" th:method="post" enctype="multipart/form-data" th:object="${menu}">
 			<input type="hidden" name="menu_id" th:field="*{menu_id}">
 			<div>
-				<!-- 画像アップロード機能未実装 -->
-				<div class="row mx-md-n5">
+				<!-- 画像アップロード機能 -->
+				<div  class="row mx-md-n5">
 					<div class="col-2 pt-3 border bg-light">
-							メニュー画像<span class="text-danger">※</span>
+						<label for="menuImg">イメージ画像</label>
 					</div>
 					<div class="col py-2 border">
-						<input type="file" id="menuImg">
-					</div>
+   						<input id="menuImg" type="file" accept="image/*" class="form-control" name="menuImg" th:field="*{menuImg}" required>
+   					</div>
 				</div>
 				<div class="row mx-md-n5">
 					<div class="col-2 pt-3 border bg-light">

@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.app.PasswordResetForm;
 import com.example.demo.entity.User;
+import com.example.demo.form.PasswordResetForm;
 import com.example.demo.repository.UserRepository;
 
 /**

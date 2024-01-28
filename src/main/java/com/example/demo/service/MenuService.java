@@ -47,13 +47,14 @@ public class MenuService {
 	public void signup(Menu menu, UserDetails userDetails) {
 		
 		String menu_nm = menu.getMenu_nm();
+		String menu_img = menu.getMenuImg();
 		String menu_dtl = menu.getMenu_dtl();
 		int price = menu.getPrice();
 		String genre = menu.getGenre();
 		String note = menu.getNote();
 		String ins_user = userDetails.getUsername();
 		
-		menuRepository.signupMenu(menu_nm, menu_dtl, price, genre, note, ins_user);
+		menuRepository.signupMenu(menu_nm, menu_img, menu_dtl, price, genre, note, ins_user);
 		return;
 	}
 	
@@ -64,6 +65,7 @@ public class MenuService {
 	public Menu updateMenu(Menu menu, UserDetails userDetails) {
 		
 		String menu_nm = menu.getMenu_nm();
+		String menu_img = menu.getMenuImg();
 		String menu_dtl = menu.getMenu_dtl();
 		int price = menu.getPrice();
 		String genre = menu.getGenre();
@@ -71,7 +73,9 @@ public class MenuService {
 		String upd_user = userDetails.getUsername();
 		Long menu_id = menu.getMenu_id();
 		
-		menuRepository.updateMenu(menu_nm, menu_dtl, price, genre, note, upd_user, menu_id);
+		//System.out.println(menu_img);
+		
+		menuRepository.updateMenu(menu_nm, menu_img, menu_dtl, price, genre, note, upd_user, menu_id);
 		return menu;
 	}
 	

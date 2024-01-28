@@ -13,7 +13,7 @@
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
 </head>
-<body>
+<body class="pb-5 mb-4">
 	<div th:replace="common/layout:: header"></div>
 	<div class="container mt-4 mb-4">
 		<h1 class="text-center mt-4 mb-4">料理メニュー新規登録</h1>
@@ -23,21 +23,16 @@
 			<label class="text-danger" th:text="${error}"></label>
 		</div>
 		
-		<form th:action="@{/menu/signup}" th:method="post" th:object="${menu}">
+		<form th:action="@{/menu/signup}" th:method="post" enctype="multipart/form-data" th:object="${menuForm}">
 			<div class="container">
-				<!-- 
-				<div>
-					<label for="menuImg" class="text-muted">イメージ画像</label>
-   					<input id="menuImg" type="file" accept="image/*" class="form-control" name="menuImg" th:field="*{menu_img}" required>
-				</div> -->
-				<!-- 画像アップロード機能未実装 -->
-				<div class="row mx-md-n5">
+				<!-- 画像アップロード機能 -->
+				<div  class="row mx-md-n5">
 					<div class="col-2 pt-3 border bg-light">
-							メニュー画像<span class="text-danger">※</span>
+						<label for="menuImg">イメージ画像</label>
 					</div>
 					<div class="col py-2 border">
-						<input type="file" id="menuImg">
-					</div>
+   						<input id="menuImg" type="file" accept="image/*" class="form-control" name="menuImg" th:field="*{menuImg}" required>
+   					</div>
 				</div>
 				<div class="row mx-md-n5">
 					<div class="col-2 pt-3 border bg-light">
