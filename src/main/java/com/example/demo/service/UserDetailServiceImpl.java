@@ -38,6 +38,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("user not found.", e);
         }
 	}
+
 	//データベースに同一ユーザー名が既に登録されているかを確認
 	public boolean isExistUser(String username) {
         String sql = "SELECT COUNT(*) FROM user WHERE name = ?";
@@ -53,5 +54,4 @@ public class UserDetailServiceImpl implements UserDetailsService {
         String sql = "INSERT INTO user(name, password, authority) VALUES(?, ?, ?)";
         jdbcTemplate.update(sql, username, passwordEncoder.encode(password), authority);
     }
-
 }

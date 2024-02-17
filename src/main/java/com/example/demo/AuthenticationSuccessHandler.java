@@ -28,5 +28,4 @@ public class AuthenticationSuccessHandler
         	response.sendRedirect(request.getContextPath() + "/part");
         }
 	}
-
 }

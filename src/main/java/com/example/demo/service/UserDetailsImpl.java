@@ -15,6 +15,7 @@ public class UserDetailsImpl implements UserDetails {
 	private String password;
 	private Collection<GrantedAuthority> authorities;
 	
+	// enumの使い方がよくわからないので一旦コメントアウト
 	// public enum Authority {ROLE_USER, ROLE_ADMIN}
 
 	public UserDetailsImpl(String username, String password, Collection<GrantedAuthority> authorities) {
