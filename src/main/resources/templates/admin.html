@@ -10,24 +10,24 @@
 </head>
 <body class="pb-5 mb-4" >
 	<div th:replace="common/layout:: header"></div>
-  	<h1 class="mt-4 mb-2 text-center">～～～ 社員のホーム画面 ～～～</h1>
-  	<h2 class="mt-4 mb-2 text-center" th:text="'こんにちは 、' + ${#authentication.name}  + ' さん'"></h2>
+  	<h1 class="mt-4 mb-2 text-center">【社員のホーム画面】</h1>
   	
   	<!-- お知らせ機能 -->
 	<div class="container">
-		<div class="bg-light p-3 p-sm-5 my-4 rounded" style="color:red">
-			<h2 class="display-6">～お知らせ～</h2>
+		<div class="bg-light p-3 p-sm-5 my-4 rounded">
+			<h2 class="display-6">Information</h2>
 			<hr class="my-4">
-			<div class="alert alert-danger" role="alert">
+<!--			<div class="alert alert-danger" role="alert">-->
 				<ul th:each="topInformation : ${topInformationList}" th:object="${topInformation}" class="align-middle">
 					<li>
-						<a th:href="@{/information/detail/{id}(id=*{information_id})}" th:if="*{upd_date != null}" th:text="|*{#temporals.format(upd_date,'yyyy/MM/dd HH:mm')}　　*{title}|"></a>
-	    				<a th:href="@{/information/detail/{id}(id=*{information_id})}" th:unless="*{upd_date != null}" th:text="|*{#temporals.format(ins_date,'yyyy/MM/dd HH:mm')}　　*{title}|"></a>
+						<a th:href="@{/information/detail/{id}(id=*{information_id})}" th:if="*{upd_date != null}" th:text="|*{#temporals.format(upd_date,'yyyy.MM.dd HH:mm')}　　*{title}|"></a>
+	    				<a th:href="@{/information/detail/{id}(id=*{information_id})}" th:unless="*{upd_date != null}" th:text="|*{#temporals.format(ins_date,'yyyy.MM.dd HH:mm')}　　*{title}|"></a>
 	    			</li>
 	    		</ul>
-			</div>
+<!--			</div>-->
 	  	</div>
 	</div>
+
 	
 	<div class="container mt-4">
 		<div class="container">
